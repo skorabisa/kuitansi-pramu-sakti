@@ -40,3 +40,14 @@ const files=[['[Content_Types].xml',type],['_rels/.rels',rel],['word/document.xm
 if(logo)files.push(['word/media/logo.'+logo.ext,logo.bytes]);
 const blob=zipStored(files),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=String(r.number||'kuitansi').replace(/[^a-zA-Z0-9_-]/g,'_')+'.docx';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),10000)
 }catch(err){console.error('DOCX export:',err);alert('Gagal membuat Word: '+(err.message||String(err)))}}
+
+// Inisialisasi halaman dan semua fitur setelah elemen HTML tersedia.
+fields.forEach(k=>$(k).addEventListener('input',render));
+window.addEventListener('resize',fitPreview);
+$('bulkDate').value=today();
+loadLetter();
+newReceipt();
+saveCustomers();
+updateStats();
+show('dashboard');
+</script></body></html>
