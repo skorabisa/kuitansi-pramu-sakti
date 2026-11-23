@@ -3,242 +3,354 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Kuitansi | Pramu Sakti Indonesia</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pramu Sakti Indonesia | Sistem Kuitansi Digital</title>
 <style>
-:root{--navy:#103d70;--bg:#f2f5fa;--line:#dce4ee}
+:root{
+--navy:#092b52;
+--navy2:#103d70;
+--gold:#efb844;
+--bg:#f3f6fb;
+--line:#dbe3ee;
+--text:#172b46;
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);font-family:Arial,sans-serif;color:#172b42}
-header{background:var(--navy);color:#fff;padding:17px}
-header h2{font-size:18px;margin:0 0 5px}
-header small{opacity:.8}
-nav{display:flex;gap:7px;overflow-x:auto;background:#fff;padding:10px}
-button{border:0;border-radius:7px;padding:11px 13px;background:#e5edf7;color:#103d70;cursor:pointer}
-button.primary{background:var(--navy);color:#fff}
-nav button{white-space:nowrap}
-main{max-width:1200px;margin:auto;padding:12px}
-.panel{background:#fff;border-radius:12px;padding:17px;margin-bottom:14px;box-shadow:0 2px 8px #12345610}
-h3{margin:0 0 15px}
-label{display:block;font-size:13px;font-weight:bold;margin:13px 0 5px}
-input,textarea{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:7px;font:inherit}
-textarea{min-height:76px}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
+body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text)}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.topbar{
+height:76px;background:linear-gradient(110deg,#071f3e,#103d70);
+color:white;display:flex;align-items:center;justify-content:space-between;padding:12px 24px;gap:12px;
+}
+.brand{display:flex;align-items:center;gap:14px}
+.brand img{width:62px;height:52px;object-fit:contain}
+.brand h1{font-size:21px;margin:0}
+.brand small{font-size:12px;color:#d5e3f5}
+.admin{font-size:13px;text-align:right}
+.layout{display:flex;min-height:calc(100vh - 76px)}
+.sidebar{width:235px;flex-shrink:0;background:linear-gradient(#092b52,#061d39);color:white;padding:20px 12px}
+.menu-btn{
+display:flex;align-items:center;gap:12px;width:100%;
+background:transparent;color:#e8f0fb;border:0;
+padding:15px;border-radius:9px;text-align:left;margin-bottom:5px;
+}
+.menu-btn.active{background:linear-gradient(90deg,#f0b33c,#ffd477);color:#152c4c;font-weight:bold}
+.menu-btn:hover{background-color:#24496e}
+.menu-icon{font-size:19px;width:25px;text-align:center}
+.workspace{flex:1;min-width:0;padding:22px}
+.page-title{font-size:25px;margin:0 0 5px;color:#0b2b53}
+.subtitle{color:#64748b;margin:0 0 20px;font-size:13px}
+.panel{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:20px;box-shadow:0 3px 12px #1122440c;margin-bottom:16px}
+.panel h3{margin:0 0 18px;color:#0a2c55;font-size:17px}
+.grid2{display:grid;grid-template-columns:minmax(270px,350px) minmax(0,1fr);gap:16px;align-items:start}
+label{display:block;font-size:13px;font-weight:600;margin:15px 0 6px}
+input,textarea,select{
+width:100%;border:1px solid #cbd6e4;border-radius:8px;
+padding:11px;background:#fff;color:#172b46;outline:none;
+}
+input:focus,textarea:focus,select:focus{border-color:#3078c0;box-shadow:0 0 0 2px #3078c01a}
+textarea{min-height:80px;resize:vertical}
+.btn{border:1px solid #cfdae8;background:#eaf1fa;color:#12375f;border-radius:8px;padding:11px 15px}
+.btn-primary{background:#103d70;color:white;border-color:#103d70}
+.btn-gold{background:var(--gold);color:#092b52;border-color:var(--gold);font-weight:bold}
+.btn-danger{background:#fff1f1;color:#a52222;border-color:#ffd0d0}
+.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}
 .hidden{display:none!important}
-.muted{font-size:12px;color:#64748b;line-height:1.5}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.stat{background:#edf3fa;border-radius:9px;padding:16px}
-.stat strong{display:block;font-size:22px;margin-top:8px;overflow-wrap:anywhere}
-.item{padding:13px 0;border-bottom:1px solid var(--line)}
-.item button{margin:6px 4px 0 0}
-.preview-wrap{overflow:auto;background:#dce5ee;padding:12px}
+.muted{font-size:12px;color:#64748b;line-height:1.6}
+.section-head{background:#edf4fc;border-radius:8px;padding:12px;font-weight:bold;color:#123b70;margin-top:20px}
+.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.stat{background:#edf4fc;border-radius:10px;padding:20px}
+.stat b{display:block;font-size:24px;margin-top:12px;color:#0b315e}
+.history-item{padding:14px 0;border-bottom:1px solid var(--line)}
+.history-item strong{color:#0b315e}
+.history-item .actions{margin-top:9px}
+.preview-scroll{background:#dce5ef;overflow:auto;padding:16px;border-radius:8px}
+.preview-scroll .paper{margin:0 auto}
+.preview-tabs{display:flex;gap:8px;margin-bottom:14px}
+.preview-tabs button{flex:1}
+.table-wrap{overflow:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
+th{background:#edf4fc;color:#103d70}
+.mobile-menu{display:none}
 
-/* HALAMAN A4 */
+/* KERTAS CETAK A4 */
 .paper{
-width:210mm;
-height:297mm;
-background:#fff;
-color:#111;
-padding:20mm;
-margin:auto;
-font-family:Arial,sans-serif;
-font-size:12.5px;
-position:relative;
-overflow:hidden;
-box-shadow:0 2px 8px #0002;
+width:210mm;height:297mm;background:white;color:#111;
+padding:20mm;position:relative;overflow:hidden;
+font-family:"Times New Roman",serif;font-size:13pt;
+box-shadow:0 2px 10px #0002;
 }
-.paper-content{width:170mm;height:257mm;position:relative}
-
-/* KOP SURAT */
-.kop{
-display:grid;
-grid-template-columns:45mm 1fr;
-align-items:center;
-column-gap:5mm;
-min-height:34mm;
+.paper-inner{width:170mm;height:257mm;position:relative}
+.letterhead{
+display:grid;grid-template-columns:42mm 1fr;
+gap:5mm;align-items:center;min-height:35mm;
 }
-.kop-logo{
-width:45mm;height:34mm;
-display:flex;align-items:center;justify-content:center;
+.letter-logo{width:42mm;height:35mm;display:flex;align-items:center;justify-content:center}
+.letter-logo img{max-width:100%;max-height:100%;object-fit:contain}
+.letter-info{text-align:center;overflow-wrap:anywhere}
+.letter-info h2{font-family:Arial,sans-serif;font-size:18pt;margin:0 0 3mm;font-weight:800}
+.letter-info p{font-family:Arial,sans-serif;font-size:9.2pt;margin:1mm 0;line-height:1.3}
+.letter-rule{border-top:2px solid #111;margin-top:3mm;margin-bottom:8mm}
+.receipt-title{text-align:center;font-size:26pt;font-weight:bold}
+.receipt-number{text-align:center;font-family:Arial,sans-serif;font-size:10.5pt;margin-top:2mm}
+.receipt-body{margin-top:15mm}
+.receipt-row{
+display:grid;grid-template-columns:43mm 5mm 1fr;
+gap:2mm;margin-bottom:8mm;line-height:1.4;
 }
-.kop-logo img{
-max-width:100%;max-height:100%;
-object-fit:contain;
+.receipt-row .value{overflow-wrap:anywhere;white-space:pre-wrap}
+.receipt-row .italic{font-style:italic}
+.total-line{
+display:inline-block;border-top:3px double #111;border-bottom:3px double #111;
+padding:2mm 0;font-size:16pt;font-weight:bold;margin-top:5mm;
 }
-.kop-info{text-align:center;overflow-wrap:anywhere}
-.kop-info h1{font-size:21px;font-weight:700;margin:0 0 6px}
-.kop-info p{font-size:11px;line-height:1.45;margin:2px 0}
-.kop-line{height:2px;background:#111;margin:4mm 0 9mm}
-
-/* JUDUL DAN ISI */
-.k-title{text-align:center;font-family:Georgia,serif;font-size:29px;font-weight:bold}
-.k-number{text-align:center;font-size:12px;margin-top:7px}
-.k-body{margin-top:18mm}
-.k-row{
-display:grid;
-grid-template-columns:37mm 4mm 1fr;
-gap:2mm;
-margin-bottom:9mm;
-font-size:13px;
-line-height:1.6;
+.signature{width:73mm;margin:16mm 0 0 auto;font-size:12pt;line-height:1.5}
+.signature-space{height:24mm;display:flex;align-items:center;font-style:italic}
+.sign-name{font-weight:bold;text-decoration:underline;overflow-wrap:anywhere}
+.sign-position{font-size:11pt}
+@media(max-width:1000px){
+.sidebar{width:195px}
+.grid2{grid-template-columns:1fr}
+.statgrid{grid-template-columns:1fr}
 }
-.k-value{font-size:13px;font-style:italic;white-space:pre-wrap;overflow-wrap:anywhere}
-.k-total{
-display:inline-block;
-margin-top:9mm;
-padding:6px 0;
-border-top:3px double #111;
-border-bottom:3px double #111;
-font-family:Georgia,serif;
-font-size:16px;
-font-weight:bold;
+@media(max-width:700px){
+.topbar{height:66px;padding:10px}
+.brand h1{font-size:14px}
+.brand img{width:43px;height:42px}
+.admin{display:none}
+.mobile-menu{display:block;background:#f0b844;border:0;border-radius:7px;padding:10px}
+.layout{display:block}
+.sidebar{display:none;width:100%;padding:10px}
+.sidebar.open{display:block}
+.workspace{padding:12px}
+.panel{padding:14px}
+.page-title{font-size:21px}
 }
-.k-sign{
-width:70mm;
-margin:20mm 0 0 auto;
-font-size:12px;
-line-height:1.6;
-}
-.k-materai{height:30mm;display:flex;align-items:center;font-style:italic}
-.k-person{min-height:10mm}
-@media(max-width:650px){.stats{grid-template-columns:1fr}.panel{padding:13px}}
 @media print{
 @page{size:A4;margin:0}
-html,body{margin:0;padding:0;background:#fff}
-header,nav,main{display:none!important}
+html,body{margin:0!important;padding:0!important;background:white!important}
+.topbar,.layout{display:none!important}
 #printArea{display:block!important}
 .paper{
-width:210mm;height:297mm;
-padding:20mm;margin:0;
-box-shadow:none;
-break-after:page;
-page-break-after:always;
+width:210mm;height:297mm;padding:20mm;
+margin:0;box-shadow:none;
+break-after:page;page-break-after:always;
 }
 .paper:last-child{break-after:auto;page-break-after:auto}
 }
 </style>
 </head>
 <body>
-<header>
-<h2>PRAMU SAKTI INDONESIA</h2>
+
+<header class="topbar">
+<div class="brand">
+<button class="mobile-menu" onclick="toggleMenu()">☰</button>
+<img id="headerLogo" alt="" style="display:none">
+<div>
+<h1>PRAMU SAKTI INDONESIA</h1>
 <small>Sistem Kuitansi Digital</small>
+</div>
+</div>
+<div class="admin">● Admin<br><small>Pramu Sakti</small></div>
 </header>
 
-<nav>
-<button onclick="show('dashboard')">Dashboard</button>
-<button onclick="newReceipt();show('editor')">Buat Kuitansi</button>
-<button onclick="show('history')">Riwayat</button>
-<button onclick="show('bulk')">Kuitansi Massal</button>
-<button onclick="show('letter')">Kelola Kop Surat</button>
-</nav>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+<button class="menu-btn active" data-page="dashboard" onclick="show('dashboard')"><span class="menu-icon">⌂</span>Dashboard</button>
+<button class="menu-btn" data-page="editor" onclick="show('editor')"><span class="menu-icon">▤</span>Buat Kuitansi</button>
+<button class="menu-btn" data-page="bulk" onclick="show('bulk')"><span class="menu-icon">▱</span>Kuitansi Massal</button>
+<button class="menu-btn" data-page="history" onclick="show('history')"><span class="menu-icon">◷</span>Riwayat Kuitansi</button>
+<button class="menu-btn" data-page="letter" onclick="show('letter')"><span class="menu-icon">⚙</span>Kelola Kop Surat</button>
+<button class="menu-btn" data-page="customers" onclick="show('customers')"><span class="menu-icon">♙</span>Data Pelanggan</button>
+<button class="menu-btn" data-page="reports" onclick="show('reports')"><span class="menu-icon">▥</span>Laporan</button>
+<button class="menu-btn" data-page="settings" onclick="show('settings')"><span class="menu-icon">⚙</span>Pengaturan</button>
+</aside>
 
-<main>
-<section id="dashboard" class="panel">
-<h3>Dashboard Kuitansi</h3>
-<div class="stats">
-<div class="stat">Total Kuitansi<strong id="count">0</strong></div>
-<div class="stat">Total Nominal<strong id="sum">Rp0</strong></div>
+<main class="workspace">
+
+<section id="dashboard" class="page">
+<h2 class="page-title">Dashboard Kuitansi</h2>
+<p class="subtitle">Ringkasan administrasi Pramu Sakti Indonesia</p>
+<div class="statgrid">
+<div class="stat">Total Kuitansi<b id="statCount">0</b></div>
+<div class="stat">Total Nominal<b id="statTotal">Rp0</b></div>
+<div class="stat">Jumlah Pelanggan<b id="statCustomers">0</b></div>
 </div>
+<div class="panel" style="margin-top:18px">
+<h3>Akses Cepat</h3>
 <div class="actions">
-<button class="primary" onclick="newReceipt();show('editor')">+ Kuitansi Baru</button>
-<button onclick="show('bulk')">Buat Banyak Kuitansi</button>
+<button class="btn btn-primary" onclick="newReceipt();show('editor')">+ Buat Kuitansi</button>
+<button class="btn" onclick="show('bulk')">Kuitansi Massal</button>
+<button class="btn" onclick="show('history')">Lihat Riwayat</button>
 </div>
-<p class="muted">Data tersimpan pada browser perangkat ini. Ekspor CSV secara berkala sebagai cadangan.</p>
+<p class="muted">Data disimpan pada browser ini. Gunakan fitur ekspor cadangan secara berkala.</p>
+</div>
 </section>
 
-<section id="editor" class="panel hidden">
-<h3>Buat / Edit Kuitansi</h3>
-<label>Nomor Kuitansi</label><input id="number">
-<label>Sudah Terima Dari</label><input id="payer">
-<label>Nominal Rupiah</label><input id="amount" type="number" min="0">
-<label>Untuk Pembayaran</label><textarea id="purpose"></textarea>
-<label>Kota</label><input id="city">
+<section id="editor" class="page hidden">
+<h2 class="page-title">Buat Kuitansi</h2>
+<p class="subtitle">Isi data dan lihat hasil kuitansi secara langsung.</p>
+<div class="grid2">
+<div class="panel">
+<h3>▤ Data Kuitansi</h3>
+<label>Nomor Kuitansi</label>
+<div style="display:flex;gap:7px">
+<input id="number">
+<button class="btn" onclick="refreshNumber()" title="Nomor baru">↻</button>
+</div>
 <label>Tanggal</label><input id="date" type="date">
+<label>Sudah Terima Dari</label><input id="payer" list="customerNames" placeholder="Nama pembayar">
+<datalist id="customerNames"></datalist>
+<label>Banyaknya Uang (Rp)</label><input id="amount" type="number" min="0" step="1" placeholder="10000000">
+<p class="muted" id="amountWords">Nol Rupiah</p>
+<label>Untuk Pembayaran</label><textarea id="purpose" placeholder="Uraian pembayaran"></textarea>
+<label>Kota</label><input id="city">
 <label>Perusahaan Penerima</label><input id="recipient">
-<label>Nama Penandatangan</label><input id="signer">
+<label>Penandatangan</label><input id="signer">
 <label>Jabatan</label><input id="position">
+<div class="section-head">▣ Opsi Cetak</div>
+<label>Ukuran Kertas</label>
+<select disabled><option>A4 (210 × 297 mm)</option></select>
+<label>Margin Cetak</label>
+<select disabled><option>20 mm — semua sisi</option></select>
+<p class="muted">Margin sudah disiapkan pada dokumen. Jangan menambahkan margin cetak browser.</p>
+</div>
+<div>
+<div class="panel">
+<div class="preview-tabs">
+<button class="btn btn-primary">▣ Preview Kuitansi</button>
+<button class="btn" onclick="show('history')">Data Tersimpan</button>
+</div>
+<div class="preview-scroll" id="preview"></div>
 <div class="actions">
-<button class="primary" onclick="saveReceipt()">Simpan Kuitansi</button>
-<button onclick="printCurrent()">Cetak / PDF</button>
-<button onclick="newReceipt()">Form Baru</button>
+<button class="btn btn-primary" onclick="saveReceipt()">▣ Simpan</button>
+<button class="btn" onclick="printCurrent()">▣ Cetak</button>
+<button class="btn" onclick="printCurrent()">PDF</button>
+<button class="btn btn-gold" onclick="shareReceipt()">Bagikan</button>
+<button class="btn" onclick="newReceipt()">+ Baru</button>
+</div>
+</div>
+</div>
 </div>
 </section>
 
-<section id="history" class="panel hidden">
-<h3>Riwayat Kuitansi</h3>
-<input id="search" placeholder="Cari nomor atau pembayar" oninput="listReceipts()">
-<div class="actions">
-<button onclick="printAll()">Cetak Semua</button>
-<button onclick="exportCSV()">Ekspor CSV</button>
-</div>
-<div id="historyList"></div>
-</section>
-
-<section id="bulk" class="panel hidden">
-<h3>Kuitansi Massal</h3>
-<p class="muted">Satu kuitansi per baris. Format: Nama Pembayar | Nominal | Keperluan</p>
-<textarea id="bulkData" rows="8" placeholder="PT Contoh A | 1500000 | Jasa kegiatan&#10;PT Contoh B | 2500000 | Pembayaran barang"></textarea>
-<label>Kota</label><input id="bulkCity" value="Tangerang Selatan">
+<section id="bulk" class="page hidden">
+<h2 class="page-title">Kuitansi Massal</h2>
+<p class="subtitle">Buat beberapa kuitansi sekaligus dengan nomor otomatis.</p>
+<div class="panel">
+<h3>Input Data Massal</h3>
+<p class="muted">Format setiap baris: Nama Pembayar | Nominal | Keperluan</p>
+<textarea id="bulkData" style="min-height:180px" placeholder="PT Contoh A | 1500000 | Jasa kegiatan&#10;PT Contoh B | 2500000 | Pengadaan barang"></textarea>
 <label>Tanggal</label><input id="bulkDate" type="date">
+<label>Kota</label><input id="bulkCity" value="Tangerang Selatan">
 <label>Perusahaan Penerima</label><input id="bulkRecipient" value="Pramu Sakti Indonesia">
 <label>Penandatangan</label><input id="bulkSigner">
 <label>Jabatan</label><input id="bulkPosition" value="Direktur">
-<div class="actions">
-<button class="primary" onclick="saveBulk()">Simpan Semua</button>
+<div class="actions"><button class="btn btn-primary" onclick="saveBulk()">Simpan Semua Kuitansi</button></div>
 </div>
 </section>
 
-<section id="letter" class="panel hidden">
-<h3>Kelola Kop Surat</h3>
+<section id="history" class="page hidden">
+<h2 class="page-title">Riwayat Kuitansi</h2>
+<p class="subtitle">Kelola, cetak ulang, edit, dan duplikasi kuitansi.</p>
+<div class="panel">
+<input id="search" placeholder="Cari nomor atau nama pembayar" oninput="listReceipts()">
+<div class="actions">
+<button class="btn" onclick="printAll()">Cetak Semua</button>
+<button class="btn btn-primary" onclick="exportCSV()">Ekspor CSV</button>
+</div>
+<div id="historyList"></div>
+</div>
+</section>
+
+<section id="letter" class="page hidden">
+<h2 class="page-title">Kelola Kop Surat</h2>
+<p class="subtitle">Atur identitas dan logo perusahaan.</p>
+<div class="panel">
 <label>Nama Perusahaan</label><input id="company">
 <label>Alamat</label><textarea id="address"></textarea>
+<label>Kode Pos</label><input id="postal">
 <label>Telepon</label><input id="phone">
 <label>Email</label><input id="email">
-<label>Kode Pos</label><input id="postal">
-<label>Logo Perusahaan</label>
-<input id="logoUpload" type="file" accept="image/*" onchange="loadLogo(event)">
-<p class="muted">Logo akan diproses agar tampil proporsional pada kop surat. Tekan Simpan Kop Surat setelah memilih logo.</p>
+<label>Logo Perusahaan</label><input type="file" id="logoUpload" accept="image/*" onchange="loadLogo(event)">
+<p class="muted">Logo asli dipertahankan proporsinya. Pilih gambar, lalu simpan kop surat.</p>
 <div class="actions">
-<button class="primary" onclick="saveLetter()">Simpan Kop Surat</button>
-<button onclick="show('editor')">Lihat Kuitansi</button>
+<button class="btn btn-primary" onclick="saveLetter()">Simpan Kop Surat</button>
+<button class="btn" onclick="show('editor')">Lihat pada Kuitansi</button>
+</div>
 </div>
 </section>
 
-<section id="previewPanel" class="panel hidden">
-<h3>Preview Kuitansi A4</h3>
-<p class="muted">Geser ke samping pada HP untuk melihat halaman penuh. Margin cetak 20 mm pada semua sisi.</p>
-<div class="preview-wrap" id="preview"></div>
+<section id="customers" class="page hidden">
+<h2 class="page-title">Data Pelanggan</h2>
+<div class="panel">
+<h3>Tambah Pelanggan</h3>
+<label>Nama Pelanggan</label><input id="customerInput">
+<div class="actions"><button class="btn btn-primary" onclick="addCustomer()">Tambah</button></div>
+<div id="customerList"></div>
+</div>
+</section>
+
+<section id="reports" class="page hidden">
+<h2 class="page-title">Laporan Kuitansi</h2>
+<div class="panel">
+<div class="statgrid">
+<div class="stat">Total Dokumen<b id="reportCount">0</b></div>
+<div class="stat">Total Nilai<b id="reportTotal">Rp0</b></div>
+<div class="stat">Pelanggan<b id="reportCustomers">0</b></div>
+</div>
+<div class="actions"><button class="btn btn-primary" onclick="exportCSV()">Unduh Laporan CSV</button></div>
+</div>
+</section>
+
+<section id="settings" class="page hidden">
+<h2 class="page-title">Pengaturan</h2>
+<div class="panel">
+<h3>Cadangan Data</h3>
+<p class="muted">Ekspor data sebelum menghapus data browser atau berpindah perangkat.</p>
+<div class="actions">
+<button class="btn btn-primary" onclick="exportBackup()">Ekspor Cadangan JSON</button>
+<button class="btn" onclick="$('backupFile').click()">Impor Cadangan JSON</button>
+<input id="backupFile" type="file" accept=".json,application/json" style="display:none" onchange="importBackup(event)">
+</div>
+</div>
 </section>
 </main>
+</div>
 
 <div id="printArea" class="hidden"></div>
 
 <script>
 const $=id=>document.getElementById(id);
-const fields=['number','payer','amount','purpose','city','date','recipient','signer','position'];
-const letterFields=['company','address','phone','email','postal'];
+const fields=['number','date','payer','amount','purpose','city','recipient','signer','position'];
+const letterFields=['company','address','postal','phone','email'];
 const defaults={
 company:'PRAMU SAKTI INDONESIA',
 address:'Jl. H. Muri Salim, RT 003 RW 11, Pisangan, Ciputat Timur\nKota Tangerang Selatan',
+postal:'15419',
 phone:'085856409350',
 email:'pramusaktiindonesia@gmail.com',
-postal:'15419',
 logo:''
 };
-function getJSON(k,f){
-try{return JSON.parse(localStorage.getItem(k))||f}
-catch(e){return f}
+function getJSON(key,fallback){
+try{return JSON.parse(localStorage.getItem(key))??fallback}
+catch(e){return fallback}
 }
 let receipts=getJSON('psi_receipts',[]);
 let letter={...defaults,...getJSON('psi_letter',{})};
+let customers=getJSON('psi_customers',[]);
 let editing=null;
-
+let logoPending=false;
 function esc(s){
 return String(s??'').replace(/[&<>"']/g,c=>({
 '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
 }[c]));
 }
-function money(n){return 'Rp'+Number(n||0).toLocaleString('id-ID')}
-function words(n){
+function money(n){
+return 'Rp'+Number(n||0).toLocaleString('id-ID');
+}
+function terbilang(n){
 n=Math.floor(Number(n)||0);
 if(n===0)return 'Nol';
 const a=['','Satu','Dua','Tiga','Empat','Lima','Enam','Tujuh','Delapan','Sembilan','Sepuluh','Sebelas'];
@@ -253,7 +365,8 @@ if(x<2000)return 'Seribu '+f(x-1000);
 if(x<1e6)return f(Math.floor(x/1000))+' Ribu '+f(x%1000);
 if(x<1e9)return f(Math.floor(x/1e6))+' Juta '+f(x%1e6);
 if(x<1e12)return f(Math.floor(x/1e9))+' Miliar '+f(x%1e9);
-return f(Math.floor(x/1e12))+' Triliun '+f(x%1e12);
+if(x<1e15)return f(Math.floor(x/1e12))+' Triliun '+f(x%1e12);
+return 'Nominal terlalu besar';
 }
 return f(n).replace(/\s+/g,' ').trim();
 }
@@ -263,16 +376,29 @@ return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate(
 }
 function nextNumber(){
 let seq=Number(localStorage.getItem('psi_seq')||0)+1;
+const year=new Date().getFullYear();
 const used=new Set(receipts.map(r=>r.number));
-let result;
+let number;
 do{
-result='KWT-'+new Date().getFullYear()+'-'+String(seq).padStart(4,'0');
+number='KWT-'+year+'-'+String(seq).padStart(4,'0');
 seq++;
-}while(used.has(result));
-return result;
+}while(used.has(number));
+return number;
+}
+function refreshNumber(){
+$('number').value=nextNumber();
+render();
+}
+function newReceipt(){
+editing=null;
+fillForm({
+number:nextNumber(),date:today(),payer:'',amount:'',
+purpose:'',city:'Tangerang Selatan',
+recipient:'Pramu Sakti Indonesia',signer:'',position:'Direktur'
+});
 }
 function readForm(){
-let r={};
+const r={};
 fields.forEach(k=>r[k]=$(k).value);
 r.amount=Number(r.amount)||0;
 return r;
@@ -281,111 +407,130 @@ function fillForm(r){
 fields.forEach(k=>$(k).value=r[k]??'');
 render();
 }
-function newReceipt(){
-editing=null;
-fillForm({
-number:nextNumber(),payer:'',amount:0,purpose:'',
-city:'Tangerang Selatan',date:today(),
-recipient:'Pramu Sakti Indonesia',signer:'',position:'Direktur'
-});
-}
-function formattedDate(s){
+function dateText(s){
 if(!s)return '';
 const [y,m,d]=s.split('-').map(Number);
 return new Date(y,m-1,d).toLocaleDateString('id-ID',{
 day:'numeric',month:'long',year:'numeric'
 });
 }
-function paperHTML(r){
-const cleanAddress=String(letter.address||'').replace(/\s*15419\s*$/,'').trim();
-const address=esc(cleanAddress).replace(/\n/g,'<br>');
-const postal=esc(letter.postal);
-const addressWithPostal=address+(postal?' '+postal:'');
-return `<div class="paper"><div class="paper-content">
-<div class="kop">
-<div class="kop-logo">${letter.logo?`<img src="${letter.logo}" alt="Logo">`:''}</div>
-<div class="kop-info">
-<h1>${esc(letter.company)}</h1>
-<p>${addressWithPostal}</p>
-<p>Telp. ${esc(letter.phone)}</p>
-<p>${esc(letter.email)}</p>
-</div></div>
-<div class="kop-line"></div>
-<div class="k-title">KUITANSI</div>
-<div class="k-number">Nomor: ${esc(r.number)}</div>
-<div class="k-body">
-<div class="k-row"><span>Sudah Terima Dari</span><span>:</span><span class="k-value">${esc(r.payer)}</span></div>
-<div class="k-row"><span>Banyaknya Uang</span><span>:</span><span class="k-value">${esc(words(r.amount))} Rupiah</span></div>
-<div class="k-row"><span>Untuk Pembayaran</span><span>:</span><span class="k-value">${esc(r.purpose)}</span></div>
-</div>
-<div class="k-total">Jumlah ${money(r.amount)},-</div>
-<div class="k-sign">
-<div>${esc(r.city)}, ${formattedDate(r.date)}</div>
-<div>${esc(r.recipient)}</div>
-<div class="k-materai">Materai 10.000</div>
-<div class="k-person">${esc(r.signer)}<br>${esc(r.position)}</div>
-</div></div></div>`;
+function addressHTML(){
+const a=String(letter.address||'').trim();
+const p=String(letter.postal||'').trim();
+const lines=a.split(/\n/).map(s=>s.trim()).filter(Boolean);
+if(p&&lines.length&&!lines[lines.length-1].includes(p)){
+lines[lines.length-1]+=' '+p;
 }
-function render(){$('preview').innerHTML=paperHTML(readForm())}
-function show(id){
-['dashboard','editor','history','bulk','letter'].forEach(k=>{
-$(k).classList.toggle('hidden',k!==id);
-});
-$('previewPanel').classList.toggle('hidden',!['editor','letter'].includes(id));
-if(['editor','letter'].includes(id))render();
+return lines.map(esc).join('<br>');
+}
+function paperHTML(r){
+const amount=Number(r.amount)||0;
+return `<article class="paper"><div class="paper-inner">
+<div class="letterhead">
+<div class="letter-logo">${letter.logo?`<img src="${letter.logo}" alt="Logo Pramu Sakti">`:''}</div>
+<div class="letter-info">
+<h2>${esc(letter.company)}</h2>
+<p>${addressHTML()}</p>
+<p>Telp. ${esc(letter.phone)} | ${esc(letter.email)}</p>
+</div>
+</div>
+<div class="letter-rule"></div>
+<div class="receipt-title">KUITANSI</div>
+<div class="receipt-number">Nomor: ${esc(r.number)}</div>
+<div class="receipt-body">
+<div class="receipt-row"><span>Sudah Terima Dari</span><span>:</span><span class="value">${esc(r.payer)}</span></div>
+<div class="receipt-row"><span>Banyaknya Uang</span><span>:</span><span class="value italic">${esc(terbilang(amount))} Rupiah</span></div>
+<div class="receipt-row"><span>Untuk Pembayaran</span><span>:</span><span class="value">${esc(r.purpose)}</span></div>
+</div>
+<div class="total-line">Jumlah ${money(amount)},-</div>
+<div class="signature">
+<div>${esc(r.city)}, ${dateText(r.date)}</div>
+<div>${esc(r.recipient)}</div>
+<div class="signature-space">Materai 10.000</div>
+<div class="sign-name">${esc(r.signer)||'&nbsp;'}</div>
+<div class="sign-position">${esc(r.position)}</div>
+</div>
+</div></article>`;
+}
+function render(){
+$('preview').innerHTML=paperHTML(readForm());
+$('amountWords').textContent=terbilang(Number($('amount').value)||0)+' Rupiah';
+}
+function show(page){
+document.querySelectorAll('.page').forEach(el=>el.classList.toggle('hidden',el.id!==page));
+document.querySelectorAll('.menu-btn').forEach(el=>el.classList.toggle('active',el.dataset.page===page));
+$('sidebar').classList.remove('open');
+if(page==='editor')render();
+if(page==='history')listReceipts();
+if(page==='customers')listCustomers();
+if(page==='reports')updateStats();
 window.scrollTo(0,0);
 }
+function toggleMenu(){$('sidebar').classList.toggle('open')}
 function saveData(){
 try{
 localStorage.setItem('psi_receipts',JSON.stringify(receipts));
-updateDashboard();
+updateStats();
 return true;
 }catch(e){
-alert('Penyimpanan penuh. Ekspor CSV untuk cadangan.');
+alert('Penyimpanan penuh. Buat cadangan data.');
 return false;
 }
 }
 function saveReceipt(){
 const r=readForm();
-if(!r.number||!r.payer||r.amount<=0){
-alert('Isi nomor, pembayar, dan nominal.');
+if(!r.number.trim()||!r.payer.trim()||!Number.isSafeInteger(r.amount)||r.amount<=0){
+alert('Isi nomor, pembayar, dan nominal rupiah yang valid.');
 return;
 }
 if(receipts.some((x,i)=>x.number===r.number&&i!==editing)){
 alert('Nomor kuitansi sudah digunakan.');
 return;
 }
-const backup=receipts.slice();
+const old=receipts.slice();
 if(editing===null){
 receipts.push(r);
 editing=receipts.length-1;
 }else receipts[editing]=r;
 if(!saveData()){
-receipts=backup;editing=null;return;
+receipts=old;
+editing=null;
+return;
 }
 const match=r.number.match(/^KWT-\d{4}-(\d+)$/);
-if(match)localStorage.setItem('psi_seq',Math.max(
-Number(localStorage.getItem('psi_seq')||0),Number(match[1])
-));
+if(match){
+localStorage.setItem('psi_seq',Math.max(Number(localStorage.getItem('psi_seq')||0),Number(match[1])));
+}
+if(!customers.includes(r.payer)){
+customers.push(r.payer);
+saveCustomers();
+}
 alert('Kuitansi berhasil disimpan.');
 }
-function updateDashboard(){
-$('count').textContent=receipts.length;
-$('sum').textContent=money(receipts.reduce((a,r)=>a+Number(r.amount||0),0));
+function updateStats(){
+const total=receipts.reduce((s,r)=>s+Number(r.amount||0),0);
+$('statCount').textContent=receipts.length;
+$('statTotal').textContent=money(total);
+$('statCustomers').textContent=customers.length;
+$('reportCount').textContent=receipts.length;
+$('reportTotal').textContent=money(total);
+$('reportCustomers').textContent=customers.length;
 listReceipts();
 }
 function listReceipts(){
 const q=$('search').value.toLowerCase();
 $('historyList').innerHTML=receipts.map((r,i)=>({...r,i}))
 .filter(r=>(r.number+' '+r.payer).toLowerCase().includes(q))
-.reverse().map(r=>`<div class="item">
-<b>${esc(r.number)}</b><br>${esc(r.payer)} — ${money(r.amount)}
-<div>
-<button onclick="editReceipt(${r.i})">Edit</button>
-<button onclick="duplicateReceipt(${r.i})">Duplikasi</button>
-<button onclick="printSaved(${r.i})">Cetak</button>
-<button onclick="deleteReceipt(${r.i})">Hapus</button>
-</div></div>`).join('')||'<p>Belum ada kuitansi.</p>';
+.reverse().map(r=>`<div class="history-item">
+<strong>${esc(r.number)}</strong>
+<div>${esc(r.payer)} — ${money(r.amount)}</div>
+<small>${esc(r.date)}</small>
+<div class="actions">
+<button class="btn" onclick="editReceipt(${r.i})">Edit</button>
+<button class="btn" onclick="duplicateReceipt(${r.i})">Duplikasi</button>
+<button class="btn btn-primary" onclick="printSaved(${r.i})">Cetak / PDF</button>
+<button class="btn btn-danger" onclick="deleteReceipt(${r.i})">Hapus</button>
+</div></div>`).join('')||'<p class="muted">Belum ada kuitansi.</p>';
 }
 function editReceipt(i){
 editing=i;fillForm(receipts[i]);show('editor');
@@ -411,20 +556,30 @@ function printAll(){
 if(!receipts.length)return alert('Belum ada kuitansi.');
 printHTML(receipts.map(paperHTML).join(''));
 }
+async function shareReceipt(){
+const r=readForm();
+const message='Kuitansi '+r.number+'\nPembayar: '+r.payer+'\nNominal: '+money(r.amount)+'\nKeperluan: '+r.purpose;
+if(navigator.share){
+try{await navigator.share({title:'Kuitansi '+r.number,text:message})}
+catch(e){}
+}else{
+try{await navigator.clipboard.writeText(message);alert('Ringkasan kuitansi disalin.')}
+catch(e){alert('Gunakan tombol Cetak / PDF untuk membagikan dokumen.')}
+}
+}
 function saveBulk(){
 const lines=$('bulkData').value.split('\n').map(x=>x.trim()).filter(Boolean);
 if(!lines.length)return alert('Masukkan data kuitansi.');
 const parsed=[];
 for(let i=0;i<lines.length;i++){
 const p=lines[i].split('|').map(x=>x.trim());
-const amount=Number(p[1]?.replace(/[.,\s]/g,''));
+const amount=Number((p[1]||'').replace(/[.,\s]/g,''));
 if(p.length!==3||!p[0]||!Number.isSafeInteger(amount)||amount<=0||!p[2]){
-alert('Periksa format atau nominal pada baris '+(i+1));
-return;
+alert('Periksa format baris '+(i+1));return;
 }
 parsed.push({payer:p[0],amount,purpose:p[2]});
 }
-const existing=new Set(receipts.map(r=>r.number));
+const used=new Set(receipts.map(r=>r.number));
 let seq=Number(localStorage.getItem('psi_seq')||0);
 const year=new Date().getFullYear();
 const batch=parsed.map(p=>{
@@ -432,60 +587,99 @@ let number;
 do{
 seq++;
 number='KWT-'+year+'-'+String(seq).padStart(4,'0');
-}while(existing.has(number));
-existing.add(number);
-return {...p,number,city:$('bulkCity').value,
-date:$('bulkDate').value,recipient:$('bulkRecipient').value,
-signer:$('bulkSigner').value,position:$('bulkPosition').value};
+}while(used.has(number));
+used.add(number);
+return {...p,number,date:$('bulkDate').value,city:$('bulkCity').value,
+recipient:$('bulkRecipient').value,signer:$('bulkSigner').value,
+position:$('bulkPosition').value};
 });
-const backup=receipts.slice();
+const old=receipts.slice();
 receipts.push(...batch);
-if(!saveData()){receipts=backup;return}
+if(!saveData()){receipts=old;return}
 localStorage.setItem('psi_seq',seq);
+batch.forEach(r=>{if(!customers.includes(r.payer))customers.push(r.payer)});
+saveCustomers();
 $('bulkData').value='';
 alert(batch.length+' kuitansi berhasil dibuat.');
 show('history');
 }
 function exportCSV(){
-const csv=[fields.join(','),...receipts.map(r=>
-fields.map(k=>'"'+String(r[k]??'').replace(/"/g,'""')+'"').join(',')
-)].join('\r\n');
-const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'});
+const csv=[fields.join(','),...receipts.map(r=>fields.map(k=>
+'"'+String(r[k]??'').replace(/"/g,'""')+'"'
+).join(','))].join('\r\n');
+downloadFile('\ufeff'+csv,'kuitansi-pramu-sakti.csv','text/csv;charset=utf-8');
+}
+function downloadFile(content,name,type){
+const blob=new Blob([content],{type});
 const url=URL.createObjectURL(blob);
 const a=document.createElement('a');
-a.href=url;
-a.download='kuitansi-pramu-sakti.csv';
-a.click();
-setTimeout(()=>URL.revokeObjectURL(url),1000);
+a.href=url;a.download=name;a.click();
+setTimeout(()=>URL.revokeObjectURL(url),1500);
+}
+function saveCustomers(){
+try{
+localStorage.setItem('psi_customers',JSON.stringify(customers));
+$('customerNames').innerHTML=customers.map(x=>`<option value="${esc(x)}"></option>`).join('');
+updateStats();
+}catch(e){alert('Gagal menyimpan pelanggan.')}
+}
+function addCustomer(){
+const n=$('customerInput').value.trim();
+if(!n)return alert('Masukkan nama pelanggan.');
+if(customers.some(x=>x.toLowerCase()===n.toLowerCase()))return alert('Pelanggan sudah ada.');
+customers.push(n);
+$('customerInput').value='';
+saveCustomers();
+listCustomers();
+}
+function listCustomers(){
+$('customerList').innerHTML=customers.map((n,i)=>`<div class="history-item">
+${esc(n)}
+<button class="btn btn-danger" style="float:right" onclick="removeCustomer(${i})">Hapus</button>
+</div>`).join('')||'<p class="muted">Belum ada pelanggan.</p>';
+}
+function removeCustomer(i){
+if(!confirm('Hapus pelanggan?'))return;
+customers.splice(i,1);
+saveCustomers();listCustomers();
 }
 function loadLetter(){
 letterFields.forEach(k=>$(k).value=letter[k]||'');
+updateHeaderLogo();
+}
+function updateHeaderLogo(){
+$('headerLogo').src=letter.logo||'';
+$('headerLogo').style.display=letter.logo?'block':'none';
 }
 function saveLetter(){
-letterFields.forEach(k=>letter[k]=$(k).value);
+const next={...letter};
+letterFields.forEach(k=>next[k]=$(k).value);
 try{
-localStorage.setItem('psi_letter',JSON.stringify(letter));
+localStorage.setItem('psi_letter',JSON.stringify(next));
+letter=next;
+logoPending=false;
+updateHeaderLogo();
 render();
-alert('Kop surat tersimpan.');
-}catch(e){alert('Penyimpanan penuh. Gunakan logo lebih kecil.')}
+alert('Kop surat berhasil disimpan.');
+}catch(e){
+alert('Gagal menyimpan kop surat. Coba gunakan logo dengan ukuran file lebih kecil.');
+}
 }
 function loadLogo(e){
 const file=e.target.files[0];
 if(!file)return;
-if(!file.type.startsWith('image/')){
-alert('Pilih gambar PNG/JPG.');return;
-}
+if(!file.type.startsWith('image/'))return alert('Pilih gambar PNG atau JPG.');
 const reader=new FileReader();
 reader.onload=()=>{
 const img=new Image();
 img.onload=()=>{
 try{
-const scale=Math.min(1,900/Math.max(img.width,img.height));
+const scale=Math.min(1,800/Math.max(img.width,img.height));
 const c=document.createElement('canvas');
 c.width=Math.max(1,Math.round(img.width*scale));
 c.height=Math.max(1,Math.round(img.height*scale));
 const ctx=c.getContext('2d',{willReadFrequently:true});
-ctx.fillStyle='white';
+ctx.fillStyle='#fff';
 ctx.fillRect(0,0,c.width,c.height);
 ctx.drawImage(img,0,0,c.width,c.height);
 const data=ctx.getImageData(0,0,c.width,c.height).data;
@@ -498,31 +692,66 @@ l=Math.min(l,x);r=Math.max(r,x);
 t=Math.min(t,y);b=Math.max(b,y);
 }
 }}
-if(r<l){
-letter.logo=c.toDataURL('image/png');
-render();return;
-}
+if(r<l){alert('Logo tidak terbaca.');return}
 l=Math.max(0,l-10);t=Math.max(0,t-10);
 r=Math.min(c.width-1,r+10);
 b=Math.min(c.height-1,b+10);
 const out=document.createElement('canvas');
 out.width=r-l+1;out.height=b-t+1;
-out.getContext('2d').drawImage(
-c,l,t,out.width,out.height,0,0,out.width,out.height
-);
+out.getContext('2d').drawImage(c,l,t,out.width,out.height,0,0,out.width,out.height);
 letter.logo=out.toDataURL('image/png');
+logoPending=true;
 render();
-}catch(err){alert('Gagal memproses logo.')}
+alert('Logo siap. Tekan Simpan Kop Surat.');
+}catch(err){alert('Gagal memproses gambar.')}
 };
 img.src=reader.result;
 };
 reader.readAsDataURL(file);
 }
+function exportBackup(){
+downloadFile(JSON.stringify({
+version:1,receipts,letter,customers,
+seq:Number(localStorage.getItem('psi_seq')||0)
+},null,2),'cadangan-pramu-sakti.json','application/json');
+}
+function importBackup(e){
+const file=e.target.files[0];
+if(!file)return;
+const reader=new FileReader();
+reader.onload=()=>{
+try{
+const d=JSON.parse(reader.result);
+if(!Array.isArray(d.receipts)||!d.letter||typeof d.letter!=='object'||!Array.isArray(d.customers))throw Error();
+if(!confirm('Impor akan mengganti data kuitansi, pelanggan, dan kop surat di browser ini. Lanjutkan?'))return;
+const values={
+psi_receipts:JSON.stringify(d.receipts),
+psi_letter:JSON.stringify(d.letter),
+psi_customers:JSON.stringify(d.customers),
+psi_seq:String(Number(d.seq)||0)
+};
+const old={};
+Object.keys(values).forEach(k=>old[k]=localStorage.getItem(k));
+try{
+Object.keys(values).forEach(k=>localStorage.setItem(k,values[k]));
+}catch(err){
+Object.keys(old).forEach(k=>{
+if(old[k]===null)localStorage.removeItem(k);
+else localStorage.setItem(k,old[k]);
+});
+throw err;
+}
+location.reload();
+}catch(err){alert('Cadangan tidak valid atau penyimpanan penuh.')}
+};
+reader.readAsText(file);
+}
 fields.forEach(k=>$(k).addEventListener('input',render));
 $('bulkDate').value=today();
 loadLetter();
 newReceipt();
-updateDashboard();
+saveCustomers();
+updateStats();
 show('dashboard');
 </script>
 </body>
