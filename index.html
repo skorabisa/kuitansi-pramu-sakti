@@ -12,9 +12,9 @@ body{margin:0;background:var(--bg);font-family:Arial,sans-serif;color:#172638}
 header{background:var(--navy);color:white;padding:19px}
 header h2{margin:0;font-size:19px}
 header small{opacity:.8}
-nav{display:flex;gap:8px;overflow:auto;padding:12px;background:white}
-button{border:0;border-radius:8px;padding:12px 15px;cursor:pointer;background:#e7edf6;color:#163c66}
-button.primary,.active{background:var(--navy);color:white}
+nav{display:flex;gap:8px;overflow-x:auto;padding:12px;background:white}
+button{border:0;border-radius:8px;padding:12px 15px;cursor:pointer;background:#e7edf6;color:#163c66;white-space:nowrap}
+button.primary{background:var(--navy);color:white}
 main{max-width:1150px;margin:auto;padding:15px}
 .panel{background:white;padding:18px;border-radius:12px;margin-bottom:16px;box-shadow:0 2px 9px #102c4910}
 h3{margin-top:0}
@@ -23,35 +23,74 @@ input,textarea,select{width:100%;padding:12px;border:1px solid #cbd5e1;border-ra
 textarea{min-height:75px}
 .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}
 .hidden{display:none!important}
-.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .stat{background:#edf3fa;padding:15px;border-radius:9px}
-.stat strong{display:block;font-size:22px;margin-top:7px}
+.stat strong{display:block;font-size:22px;margin-top:7px;overflow-wrap:anywhere}
 .item{padding:12px;border-bottom:1px solid var(--line)}
 .item button{margin:4px 3px 0 0;padding:9px}
 .preview-wrap{overflow:auto;background:#dce4ed;padding:12px}
-.paper{width:210mm;min-height:297mm;background:white;margin:auto;padding:19mm 20mm;box-shadow:0 2px 8px #8884;color:black;font-family:Arial,sans-serif;font-size:12px}
-.letterhead{display:flex;align-items:center;gap:20px;min-height:90px}
-.letterhead img{width:115px;max-height:90px;object-fit:contain}
-.company{flex:1;text-align:center}
-.company h2{font-size:23px;font-weight:normal;margin:0 0 5px}
-.company div{font-size:11px;line-height:1.5;white-space:pre-line}
-.rule{border-top:3px solid black;margin:14px 0 22px}
-.receipt-title{text-align:center;font-size:26px;font-weight:bold}
-.receipt-number{text-align:center;margin-top:7px}
-.details{margin-top:47px}
-.detail{display:grid;grid-template-columns:145px 1fr;gap:12px;margin:15px 0;line-height:1.5}
-.detail .value{font-style:italic;white-space:pre-wrap}
-.amount{display:inline-block;border-top:3px double black;border-bottom:3px double black;font-weight:bold;padding:6px 0;margin-top:30px}
-.signature{width:260px;margin:75px 0 0 auto;line-height:1.5}
-.sign-space{height:105px;padding-top:48px;font-style:italic;font-size:10px}
+.paper{
+ width:210mm;min-height:297mm;background:white;margin:auto;
+ padding:19mm 20mm;color:#111;font-family:Arial,sans-serif;
+ font-size:12px;box-shadow:0 2px 8px #8884
+}
+.letterhead{
+ display:flex;align-items:center;gap:18px;
+ min-height:110px;padding:3px 0 12px
+}
+.logo-box{
+ width:125px;height:100px;flex-shrink:0;
+ display:flex;align-items:center;justify-content:center
+}
+.logo-box img{
+ width:100%;height:100%;object-fit:contain
+}
+.company{flex:1;text-align:center;min-width:0}
+.company h2{
+ font-size:22px;font-weight:700;margin:0 0 7px;
+ letter-spacing:.2px
+}
+.company div{font-size:11px;line-height:1.5}
+.rule{border-top:3px solid #111;margin:8px 0 25px}
+.receipt-title{text-align:center;font-size:25px;font-weight:700;letter-spacing:.7px}
+.receipt-number{text-align:center;font-size:11px;margin-top:8px}
+.details{margin-top:48px}
+.detail{
+ display:grid;grid-template-columns:145px minmax(0,1fr);
+ gap:12px;margin:17px 0;line-height:1.55;font-size:12px
+}
+.detail .value{
+ font-style:italic;white-space:pre-wrap;overflow-wrap:anywhere
+}
+.amount{
+ display:inline-block;border-top:3px double #111;
+ border-bottom:3px double #111;font-size:13px;
+ font-weight:bold;padding:6px 0;margin-top:29px
+}
+.signature{
+ width:250px;margin:68px 0 0 auto;
+ line-height:1.55;font-size:12px
+}
+.sign-space{
+ height:115px;padding-top:52px;
+ font-size:10px;font-style:italic
+}
 .signature-name{margin-top:8px}
-@media(max-width:650px){.paper{margin:0}.stats{grid-template-columns:1fr}}
+@media(max-width:650px){
+ main{padding:10px}
+ .panel{padding:13px}
+ .stats{grid-template-columns:1fr}
+}
 @media print{
-@page{size:A4;margin:0}
-body{background:white}
-header,nav,main,.panel,.actions{display:none!important}
-#printArea{display:block!important}
-.paper{box-shadow:none;margin:0;min-height:297mm}
+ @page{size:A4;margin:0}
+ body{background:white}
+ header,nav,main{display:none!important}
+ #printArea{display:block!important}
+ .paper{
+  box-shadow:none;margin:0;width:210mm;
+  min-height:297mm;break-after:page
+ }
+ .paper:last-child{break-after:auto}
 }
 </style>
 </head>
@@ -60,12 +99,14 @@ header,nav,main,.panel,.actions{display:none!important}
 <h2>PRAMU SAKTI INDONESIA</h2>
 <small>Sistem Kuitansi Digital</small>
 </header>
+
 <nav>
 <button onclick="show('dashboard')">Dashboard</button>
 <button onclick="show('editor')">Buat Kuitansi</button>
 <button onclick="show('history')">Riwayat</button>
 <button onclick="show('letter')">Kelola Kop Surat</button>
 </nav>
+
 <main>
 <section id="dashboard" class="panel">
 <h3>Dashboard Kuitansi</h3>
@@ -77,30 +118,31 @@ header,nav,main,.panel,.actions{display:none!important}
 <button class="primary" onclick="newReceipt();show('editor')">+ Kuitansi Baru</button>
 <button onclick="show('history')">Lihat Riwayat</button>
 </div>
-<p>Data sementara disimpan pada browser perangkat ini.</p>
+<p>Data kuitansi tersimpan pada browser perangkat ini.</p>
 </section>
 
 <section id="editor" class="panel hidden">
 <h3>Editor Kuitansi</h3>
 <label>Nomor Kuitansi</label><input id="number">
 <label>Sudah Terima Dari</label><input id="payer">
-<label>Jumlah Uang (Rupiah)</label><input id="amount" type="number" min="0" oninput="render()">
+<label>Jumlah Uang (Rupiah)</label>
+<input id="amount" type="number" min="0" oninput="render()">
 <label>Untuk Pembayaran</label><textarea id="purpose"></textarea>
-<label>Kota</label><input id="city" value="Tangerang Selatan">
+<label>Kota</label><input id="city">
 <label>Tanggal</label><input id="date" type="date">
-<label>Nama Perusahaan / Penerima</label><input id="recipient" value="Pramu Sakti Indonesia">
+<label>Nama Perusahaan / Penerima</label><input id="recipient">
 <label>Nama Penandatangan</label><input id="signer">
-<label>Jabatan</label><input id="position" value="Direktur">
+<label>Jabatan</label><input id="position">
 <div class="actions">
 <button class="primary" onclick="saveReceipt()">Simpan Kuitansi</button>
-<button onclick="render();printReceipt()">Cetak / PDF</button>
+<button onclick="printReceipt()">Cetak / PDF</button>
 <button onclick="newReceipt()">Kuitansi Baru</button>
 </div>
 </section>
 
 <section id="history" class="panel hidden">
 <h3>Riwayat Kuitansi</h3>
-<input id="search" placeholder="Cari nomor atau nama pembayar" oninput="listReceipts()">
+<input id="search" placeholder="Cari nomor atau pembayar" oninput="listReceipts()">
 <div class="actions">
 <button onclick="printAll()">Cetak Semua</button>
 <button onclick="exportCSV()">Ekspor CSV</button>
@@ -115,176 +157,250 @@ header,nav,main,.panel,.actions{display:none!important}
 <label>Nomor Telepon</label><input id="phone">
 <label>Email</label><input id="email">
 <label>Kode Pos</label><input id="postal">
-<label>Unggah Logo</label><input type="file" accept="image/*" id="logoUpload" onchange="loadLogo(event)">
+<label>Unggah Logo</label>
+<input type="file" accept="image/*" id="logoUpload" onchange="loadLogo(event)">
+<p style="font-size:12px;color:#64748b">
+Gunakan logo PNG/JPG yang sudah dipotong rapi agar tampil besar.
+</p>
 <div class="actions">
 <button class="primary" onclick="saveLetter()">Simpan Kop Surat</button>
 <button onclick="render();show('editor')">Lihat pada Kuitansi</button>
 </div>
 </section>
 
-<section class="panel" id="previewPanel">
+<section class="panel hidden" id="previewPanel">
 <h3>Preview Kuitansi A4</h3>
 <p>Geser ke samping pada HP untuk melihat seluruh halaman.</p>
 <div class="preview-wrap"><div id="preview"></div></div>
 </section>
 </main>
+
 <div id="printArea" class="hidden"></div>
 
 <script>
 const $=id=>document.getElementById(id);
 const fields=['number','payer','amount','purpose','city','date','recipient','signer','position'];
 const defaultLetter={
-company:'PRAMU SAKTI INDONESIA',
-address:'Jl. H. Muri Salim, RT 003 RW 11, Pisangan, Ciputat Timur\nKota Tangerang Selatan',
-phone:'085856409350',
-email:'pramusaktiindonesia@gmail.com',
-postal:'15419',
-logo:''
+ company:'PRAMU SAKTI INDONESIA',
+ address:'Jl. H. Muri Salim, RT 003 RW 11, Pisangan, Ciputat Timur\nKota Tangerang Selatan',
+ phone:'085856409350',
+ email:'pramusaktiindonesia@gmail.com',
+ postal:'15419',
+ logo:''
 };
 let receipts=JSON.parse(localStorage.getItem('psi_receipts')||'[]');
 let letter=JSON.parse(localStorage.getItem('psi_letter')||'null')||defaultLetter;
 let editing=null;
-function rupiah(n){return 'Rp'+Number(n||0).toLocaleString('id-ID')}
-function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function terbilang(n){
-n=Math.floor(Number(n)||0);
-if(n===0)return 'Nol';
-const a=['','Satu','Dua','Tiga','Empat','Lima','Enam','Tujuh','Delapan','Sembilan','Sepuluh','Sebelas'];
-function spell(x){
-if(x<12)return a[x];
-if(x<20)return spell(x-10)+' Belas';
-if(x<100)return spell(Math.floor(x/10))+' Puluh '+spell(x%10);
-if(x<200)return 'Seratus '+spell(x-100);
-if(x<1000)return spell(Math.floor(x/100))+' Ratus '+spell(x%100);
-if(x<2000)return 'Seribu '+spell(x-1000);
-if(x<1e6)return spell(Math.floor(x/1000))+' Ribu '+spell(x%1000);
-if(x<1e9)return spell(Math.floor(x/1e6))+' Juta '+spell(x%1e6);
-if(x<1e12)return spell(Math.floor(x/1e9))+' Miliar '+spell(x%1e9);
-return spell(Math.floor(x/1e12))+' Triliun '+spell(x%1e12);
+
+function rupiah(n){
+ return 'Rp'+Number(n||0).toLocaleString('id-ID');
 }
-return spell(n).replace(/\s+/g,' ').trim();
+function esc(v){
+ return String(v??'').replace(/[&<>"']/g,c=>({
+ '&':'&amp;','<':'&lt;','>':'&gt;',
+ '"':'&quot;',"'":'&#39;'
+ }[c]));
+}
+function terbilang(n){
+ n=Math.floor(Number(n)||0);
+ if(n===0)return 'Nol';
+ const a=['','Satu','Dua','Tiga','Empat','Lima','Enam','Tujuh','Delapan','Sembilan','Sepuluh','Sebelas'];
+ function spell(x){
+  if(x===0)return '';
+  if(x<12)return a[x];
+  if(x<20)return spell(x-10)+' Belas';
+  if(x<100)return spell(Math.floor(x/10))+' Puluh '+spell(x%10);
+  if(x<200)return 'Seratus '+spell(x-100);
+  if(x<1000)return spell(Math.floor(x/100))+' Ratus '+spell(x%100);
+  if(x<2000)return 'Seribu '+spell(x-1000);
+  if(x<1e6)return spell(Math.floor(x/1000))+' Ribu '+spell(x%1000);
+  if(x<1e9)return spell(Math.floor(x/1e6))+' Juta '+spell(x%1e6);
+  if(x<1e12)return spell(Math.floor(x/1e9))+' Miliar '+spell(x%1e9);
+  return spell(Math.floor(x/1e12))+' Triliun '+spell(x%1e12);
+ }
+ return spell(n).replace(/\s+/g,' ').trim();
 }
 function nextNumber(){
-let seq=Number(localStorage.getItem('psi_seq')||0)+1;
-return 'KWT-'+new Date().getFullYear()+'-'+String(seq).padStart(4,'0');
+ let seq=Number(localStorage.getItem('psi_seq')||0)+1;
+ return 'KWT-'+new Date().getFullYear()+'-'+String(seq).padStart(4,'0');
 }
 function readForm(){
-let o={};
-fields.forEach(k=>o[k]=$(k).value);
-o.amount=Number(o.amount)||0;
-return o;
+ let o={};
+ fields.forEach(k=>o[k]=$(k).value);
+ o.amount=Number(o.amount)||0;
+ return o;
 }
-function fillForm(o){fields.forEach(k=>$(k).value=o[k]??'');render()}
+function fillForm(o){
+ fields.forEach(k=>$(k).value=o[k]??'');
+ render();
+}
 function newReceipt(){
-editing=null;
-fillForm({number:nextNumber(),payer:'',amount:0,purpose:'',city:'Tangerang Selatan',date:new Date().toLocaleDateString('en-CA'),recipient:'Pramu Sakti Indonesia',signer:'',position:'Direktur'});
+ editing=null;
+ fillForm({
+  number:nextNumber(),payer:'',amount:0,purpose:'',
+  city:'Tangerang Selatan',
+  date:new Date().toLocaleDateString('en-CA'),
+  recipient:'Pramu Sakti Indonesia',
+  signer:'',position:'Direktur'
+ });
 }
 function dateText(s){
-if(!s)return '';
-const [y,m,d]=s.split('-').map(Number);
-return new Date(y,m-1,d).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
+ if(!s)return '';
+ const [y,m,d]=s.split('-').map(Number);
+ return new Date(y,m-1,d).toLocaleDateString('id-ID',{
+ day:'numeric',month:'long',year:'numeric'
+ });
 }
 function paperHTML(o){
-let addr=esc(letter.address).replace(/\n/g,'<br>');
-return `<div class="paper">
-<div class="letterhead">
-${letter.logo?`<img src="${letter.logo}" alt="Logo">`:''}
-<div class="company"><h2>${esc(letter.company)}</h2>
-<div>${addr}<br>No. Telp: ${esc(letter.phone)} | ${esc(letter.email)}<br>${esc(letter.postal)}</div></div></div>
-<div class="rule"></div>
-<div class="receipt-title">KUITANSI</div>
-<div class="receipt-number">Nomor: ${esc(o.number)}</div>
-<div class="details">
-<div class="detail"><span>Sudah Terima Dari</span><span class="value">${esc(o.payer)}</span></div>
-<div class="detail"><span>Banyaknya Uang</span><span class="value">${esc(terbilang(o.amount))} Rupiah</span></div>
-<div class="detail"><span>Untuk Pembayaran</span><span class="value">${esc(o.purpose)}</span></div>
-</div>
-<div class="amount">Jumlah ${rupiah(o.amount)},-</div>
-<div class="signature">
-<div>${esc(o.city)}, ${dateText(o.date)}</div>
-<div>${esc(o.recipient)}</div>
-<div class="sign-space">Materai 10.000</div>
-<div class="signature-name">${esc(o.signer)}<br>${esc(o.position)}</div>
-</div></div>`;
+ let addr=esc(letter.address).replace(/\n/g,'<br>');
+ return `<div class="paper">
+ <div class="letterhead">
+ <div class="logo-box">
+ ${letter.logo?`<img src="${letter.logo}" alt="Logo Perusahaan">`:''}
+ </div>
+ <div class="company">
+ <h2>${esc(letter.company)}</h2>
+ <div>${addr}<br>No. Telp: ${esc(letter.phone)}<br>
+ ${esc(letter.email)}<br>${esc(letter.postal)}</div>
+ </div>
+ </div>
+ <div class="rule"></div>
+ <div class="receipt-title">KUITANSI</div>
+ <div class="receipt-number">Nomor: ${esc(o.number)}</div>
+ <div class="details">
+ <div class="detail">
+ <span>Sudah Terima Dari</span>
+ <span class="value">${esc(o.payer)}</span></div>
+ <div class="detail">
+ <span>Banyaknya Uang</span>
+ <span class="value">${esc(terbilang(o.amount))} Rupiah</span></div>
+ <div class="detail">
+ <span>Untuk Pembayaran</span>
+ <span class="value">${esc(o.purpose)}</span></div>
+ </div>
+ <div class="amount">Jumlah ${rupiah(o.amount)},-</div>
+ <div class="signature">
+ <div>${esc(o.city)}, ${dateText(o.date)}</div>
+ <div>${esc(o.recipient)}</div>
+ <div class="sign-space">Materai 10.000</div>
+ <div class="signature-name">${esc(o.signer)}<br>${esc(o.position)}</div>
+ </div></div>`;
 }
 function render(){
-$('preview').innerHTML=paperHTML(readForm());
+ $('preview').innerHTML=paperHTML(readForm());
 }
 function printReceipt(){
-$('printArea').innerHTML=paperHTML(readForm());
-window.print();
+ $('printArea').innerHTML=paperHTML(readForm());
+ window.print();
 }
 function saveReceipt(){
-let o=readForm();
-if(!o.payer||!o.number||!o.amount){alert('Isi nomor, pembayar, dan nominal.');return}
-if(receipts.some((r,i)=>r.number===o.number&&i!==editing)){alert('Nomor kuitansi sudah digunakan.');return}
-if(editing===null){
-receipts.push(o);
-let seq=Number(localStorage.getItem('psi_seq')||0)+1;
-localStorage.setItem('psi_seq',seq);
-}else receipts[editing]=o;
-localStorage.setItem('psi_receipts',JSON.stringify(receipts));
-editing=receipts.length-1;
-updateDashboard();
-alert('Kuitansi berhasil disimpan.');
+ let o=readForm();
+ if(!o.payer||!o.number||!o.amount){
+  alert('Isi nomor, pembayar, dan nominal.');return;
+ }
+ if(receipts.some((r,i)=>r.number===o.number&&i!==editing)){
+  alert('Nomor kuitansi sudah digunakan.');return;
+ }
+ if(editing===null){
+  receipts.push(o);
+  let seq=Number(localStorage.getItem('psi_seq')||0)+1;
+  localStorage.setItem('psi_seq',seq);
+  editing=receipts.length-1;
+ }else receipts[editing]=o;
+ localStorage.setItem('psi_receipts',JSON.stringify(receipts));
+ updateDashboard();
+ alert('Kuitansi berhasil disimpan.');
 }
 function updateDashboard(){
-$('totalCount').textContent=receipts.length;
-$('totalMoney').textContent=rupiah(receipts.reduce((s,r)=>s+Number(r.amount||0),0));
-listReceipts();
+ $('totalCount').textContent=receipts.length;
+ $('totalMoney').textContent=rupiah(receipts.reduce(
+ (s,r)=>s+Number(r.amount||0),0));
+ listReceipts();
 }
 function listReceipts(){
-let q=$('search').value.toLowerCase();
-$('historyList').innerHTML=receipts.map((r,i)=>({...r,i})).filter(r=>(r.number+' '+r.payer).toLowerCase().includes(q)).reverse().map(r=>`
-<div class="item"><b>${esc(r.number)}</b><br>${esc(r.payer)} — ${rupiah(r.amount)}
-<div>
-<button onclick="editReceipt(${r.i})">Edit</button>
-<button onclick="duplicateReceipt(${r.i})">Duplikasi</button>
-<button onclick="printSaved(${r.i})">Cetak</button>
-<button onclick="deleteReceipt(${r.i})">Hapus</button>
-</div></div>`).join('')||'<p>Belum ada kuitansi.</p>';
+ let q=$('search').value.toLowerCase();
+ $('historyList').innerHTML=receipts.map((r,i)=>({...r,i}))
+ .filter(r=>(r.number+' '+r.payer).toLowerCase().includes(q))
+ .reverse().map(r=>`
+ <div class="item"><b>${esc(r.number)}</b><br>
+ ${esc(r.payer)} — ${rupiah(r.amount)}
+ <div>
+ <button onclick="editReceipt(${r.i})">Edit</button>
+ <button onclick="duplicateReceipt(${r.i})">Duplikasi</button>
+ <button onclick="printSaved(${r.i})">Cetak</button>
+ <button onclick="deleteReceipt(${r.i})">Hapus</button>
+ </div></div>`).join('')||'<p>Belum ada kuitansi.</p>';
 }
-function editReceipt(i){editing=i;fillForm(receipts[i]);show('editor')}
-function duplicateReceipt(i){editing=null;fillForm({...receipts[i],number:nextNumber()});show('editor')}
-function printSaved(i){$('printArea').innerHTML=paperHTML(receipts[i]);window.print()}
+function editReceipt(i){
+ editing=i;fillForm(receipts[i]);show('editor');
+}
+function duplicateReceipt(i){
+ editing=null;
+ fillForm({...receipts[i],number:nextNumber()});
+ show('editor');
+}
+function printSaved(i){
+ $('printArea').innerHTML=paperHTML(receipts[i]);
+ window.print();
+}
 function deleteReceipt(i){
-if(!confirm('Hapus kuitansi ini?'))return;
-receipts.splice(i,1);
-localStorage.setItem('psi_receipts',JSON.stringify(receipts));
-editing=null;updateDashboard();
+ if(!confirm('Hapus kuitansi ini?'))return;
+ receipts.splice(i,1);
+ localStorage.setItem('psi_receipts',JSON.stringify(receipts));
+ editing=null;updateDashboard();
 }
 function printAll(){
-if(!receipts.length)return alert('Belum ada kuitansi.');
-$('printArea').innerHTML=receipts.map(paperHTML).join('');
-window.print();
+ if(!receipts.length)return alert('Belum ada kuitansi.');
+ $('printArea').innerHTML=receipts.map(paperHTML).join('');
+ window.print();
 }
 function exportCSV(){
-let cols=['number','payer','amount','purpose','city','date','recipient','signer','position'];
-let csv=[cols.join(','),...receipts.map(r=>cols.map(k=>'"'+String(r[k]??'').replace(/"/g,'""')+'"').join(','))].join('\r\n');
-let blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'});
-let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='riwayat-kuitansi.csv';a.click();URL.revokeObjectURL(a.href);
+ let cols=fields;
+ let csv=[cols.join(','),...receipts.map(r=>
+ cols.map(k=>'"'+String(r[k]??'').replace(/"/g,'""')+'"').join(',')
+ )].join('\r\n');
+ let blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'});
+ let a=document.createElement('a');
+ a.href=URL.createObjectURL(blob);
+ a.download='riwayat-kuitansi.csv';
+ a.click();
+ URL.revokeObjectURL(a.href);
 }
 function loadLetter(){
-['company','address','phone','email','postal'].forEach(k=>$(k).value=letter[k]||'');
+ ['company','address','phone','email','postal'].forEach(
+ k=>$(k).value=letter[k]||'');
 }
 function saveLetter(){
-['company','address','phone','email','postal'].forEach(k=>letter[k]=$(k).value);
-try{localStorage.setItem('psi_letter',JSON.stringify(letter));render();alert('Kop surat tersimpan.')}
-catch(e){alert('Logo terlalu besar. Gunakan gambar yang lebih kecil.')}
+ ['company','address','phone','email','postal'].forEach(
+ k=>letter[k]=$(k).value);
+ try{
+  localStorage.setItem('psi_letter',JSON.stringify(letter));
+  render();alert('Kop surat tersimpan.');
+ }catch(e){
+  alert('Logo terlalu besar. Gunakan gambar yang lebih kecil.');
+ }
 }
 function loadLogo(e){
-let f=e.target.files[0];if(!f)return;
-let reader=new FileReader();
-reader.onload=()=>{letter.logo=reader.result;render()};
-reader.readAsDataURL(f);
+ let f=e.target.files[0];if(!f)return;
+ let reader=new FileReader();
+ reader.onload=()=>{
+  letter.logo=reader.result;
+  render();
+ };
+ reader.readAsDataURL(f);
 }
 function show(id){
-['dashboard','editor','history','letter'].forEach(k=>$(k).classList.toggle('hidden',k!==id));
-$('previewPanel').classList.toggle('hidden',id==='dashboard'||id==='history');
-if(id==='editor')render();
-window.scrollTo(0,0);
+ ['dashboard','editor','history','letter'].forEach(
+ k=>$(k).classList.toggle('hidden',k!==id));
+ $('previewPanel').classList.toggle('hidden',
+ id==='dashboard'||id==='history');
+ if(id==='editor'||id==='letter')render();
+ window.scrollTo(0,0);
 }
-loadLetter();newReceipt();updateDashboard();show('dashboard');
+loadLetter();
+newReceipt();
+updateDashboard();
+show('dashboard');
 fields.forEach(k=>$(k).addEventListener('input',render));
 </script>
 </body>
