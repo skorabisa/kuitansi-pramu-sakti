@@ -3,21 +3,21 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kuitansi - Pramu Sakti Indonesia</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kuitansi | Pramu Sakti Indonesia</title>
 <style>
 :root{--navy:#103d70;--bg:#f2f5fa;--line:#dce4ee}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);font-family:Arial,sans-serif;color:#172b42}
-header{background:var(--navy);color:white;padding:17px}
+header{background:var(--navy);color:#fff;padding:17px}
 header h2{font-size:18px;margin:0 0 5px}
 header small{opacity:.8}
-nav{display:flex;gap:7px;overflow-x:auto;background:white;padding:10px}
+nav{display:flex;gap:7px;overflow-x:auto;background:#fff;padding:10px}
 button{border:0;border-radius:7px;padding:11px 13px;background:#e5edf7;color:#103d70;cursor:pointer}
-button.primary{background:var(--navy);color:white}
+button.primary{background:var(--navy);color:#fff}
 nav button{white-space:nowrap}
 main{max-width:1200px;margin:auto;padding:12px}
-.panel{background:white;border-radius:12px;padding:17px;margin-bottom:14px;box-shadow:0 2px 8px #12345610}
+.panel{background:#fff;border-radius:12px;padding:17px;margin-bottom:14px;box-shadow:0 2px 8px #12345610}
 h3{margin:0 0 15px}
 label{display:block;font-size:13px;font-weight:bold;margin:13px 0 5px}
 input,textarea{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:7px;font:inherit}
@@ -31,52 +31,84 @@ textarea{min-height:76px}
 .item{padding:13px 0;border-bottom:1px solid var(--line)}
 .item button{margin:6px 4px 0 0}
 .preview-wrap{overflow:auto;background:#dce5ee;padding:12px}
+
+/* HALAMAN A4 */
 .paper{
 width:210mm;
 height:297mm;
-background:white;
+background:#fff;
 color:#111;
 padding:20mm;
 margin:auto;
 font-family:Arial,sans-serif;
-font-size:11px;
+font-size:12.5px;
 position:relative;
 overflow:hidden;
 box-shadow:0 2px 8px #0002;
 }
 .paper-content{width:170mm;height:257mm;position:relative}
+
+/* KOP SURAT */
 .kop{
 display:grid;
-grid-template-columns:40mm 1fr;
+grid-template-columns:45mm 1fr;
 align-items:center;
-gap:5mm;
-min-height:28mm;
+column-gap:5mm;
+min-height:34mm;
 }
-.kop-logo{height:28mm;display:flex;align-items:center;justify-content:center}
-.kop-logo img{max-width:100%;max-height:100%;object-fit:contain}
+.kop-logo{
+width:45mm;height:34mm;
+display:flex;align-items:center;justify-content:center;
+}
+.kop-logo img{
+max-width:100%;max-height:100%;
+object-fit:contain;
+}
 .kop-info{text-align:center;overflow-wrap:anywhere}
-.kop-info h1{font-size:17px;margin:0 0 4px;font-weight:700}
-.kop-info p{font-size:9px;margin:2px 0;line-height:1.35}
-.kop-line{height:2px;background:#111;margin:4mm 0 7mm}
-.k-title{text-align:center;font-family:Georgia,serif;font-size:25px;font-weight:bold}
-.k-number{text-align:center;margin-top:5px}
-.k-body{margin-top:16mm}
-.k-row{display:grid;grid-template-columns:34mm 4mm 1fr;gap:2mm;margin-bottom:7mm;line-height:1.55}
-.k-value{font-style:italic;white-space:pre-wrap;overflow-wrap:anywhere}
-.k-total{display:inline-block;margin-top:8mm;padding:5px 0;border-top:3px double #111;border-bottom:3px double #111;font-family:Georgia,serif;font-weight:bold;font-size:13px}
-.k-sign{width:66mm;margin:18mm 0 0 auto;line-height:1.5}
+.kop-info h1{font-size:21px;font-weight:700;margin:0 0 6px}
+.kop-info p{font-size:11px;line-height:1.45;margin:2px 0}
+.kop-line{height:2px;background:#111;margin:4mm 0 9mm}
+
+/* JUDUL DAN ISI */
+.k-title{text-align:center;font-family:Georgia,serif;font-size:29px;font-weight:bold}
+.k-number{text-align:center;font-size:12px;margin-top:7px}
+.k-body{margin-top:18mm}
+.k-row{
+display:grid;
+grid-template-columns:37mm 4mm 1fr;
+gap:2mm;
+margin-bottom:9mm;
+font-size:13px;
+line-height:1.6;
+}
+.k-value{font-size:13px;font-style:italic;white-space:pre-wrap;overflow-wrap:anywhere}
+.k-total{
+display:inline-block;
+margin-top:9mm;
+padding:6px 0;
+border-top:3px double #111;
+border-bottom:3px double #111;
+font-family:Georgia,serif;
+font-size:16px;
+font-weight:bold;
+}
+.k-sign{
+width:70mm;
+margin:20mm 0 0 auto;
+font-size:12px;
+line-height:1.6;
+}
 .k-materai{height:30mm;display:flex;align-items:center;font-style:italic}
 .k-person{min-height:10mm}
 @media(max-width:650px){.stats{grid-template-columns:1fr}.panel{padding:13px}}
 @media print{
 @page{size:A4;margin:0}
-html,body{margin:0;padding:0;background:white}
+html,body{margin:0;padding:0;background:#fff}
 header,nav,main{display:none!important}
 #printArea{display:block!important}
 .paper{
 width:210mm;height:297mm;
-padding:20mm;
-margin:0;
+padding:20mm;margin:0;
 box-shadow:none;
 break-after:page;
 page-break-after:always;
@@ -90,6 +122,7 @@ page-break-after:always;
 <h2>PRAMU SAKTI INDONESIA</h2>
 <small>Sistem Kuitansi Digital</small>
 </header>
+
 <nav>
 <button onclick="show('dashboard')">Dashboard</button>
 <button onclick="newReceipt();show('editor')">Buat Kuitansi</button>
@@ -97,6 +130,7 @@ page-break-after:always;
 <button onclick="show('bulk')">Kuitansi Massal</button>
 <button onclick="show('letter')">Kelola Kop Surat</button>
 </nav>
+
 <main>
 <section id="dashboard" class="panel">
 <h3>Dashboard Kuitansi</h3>
@@ -162,7 +196,7 @@ page-break-after:always;
 <label>Kode Pos</label><input id="postal">
 <label>Logo Perusahaan</label>
 <input id="logoUpload" type="file" accept="image/*" onchange="loadLogo(event)">
-<p class="muted">Logo akan diproses agar tampil proporsional pada kop surat.</p>
+<p class="muted">Logo akan diproses agar tampil proporsional pada kop surat. Tekan Simpan Kop Surat setelah memilih logo.</p>
 <div class="actions">
 <button class="primary" onclick="saveLetter()">Simpan Kop Surat</button>
 <button onclick="show('editor')">Lihat Kuitansi</button>
@@ -175,7 +209,9 @@ page-break-after:always;
 <div class="preview-wrap" id="preview"></div>
 </section>
 </main>
+
 <div id="printArea" class="hidden"></div>
+
 <script>
 const $=id=>document.getElementById(id);
 const fields=['number','payer','amount','purpose','city','date','recipient','signer','position'];
@@ -185,7 +221,8 @@ company:'PRAMU SAKTI INDONESIA',
 address:'Jl. H. Muri Salim, RT 003 RW 11, Pisangan, Ciputat Timur\nKota Tangerang Selatan',
 phone:'085856409350',
 email:'pramusaktiindonesia@gmail.com',
-postal:'15419',logo:''
+postal:'15419',
+logo:''
 };
 function getJSON(k,f){
 try{return JSON.parse(localStorage.getItem(k))||f}
@@ -194,6 +231,7 @@ catch(e){return f}
 let receipts=getJSON('psi_receipts',[]);
 let letter={...defaults,...getJSON('psi_letter',{})};
 let editing=null;
+
 function esc(s){
 return String(s??'').replace(/[&<>"']/g,c=>({
 '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
@@ -259,15 +297,18 @@ day:'numeric',month:'long',year:'numeric'
 });
 }
 function paperHTML(r){
-const address=esc(letter.address).replace(/\n/g,'<br>');
+const cleanAddress=String(letter.address||'').replace(/\s*15419\s*$/,'').trim();
+const address=esc(cleanAddress).replace(/\n/g,'<br>');
+const postal=esc(letter.postal);
+const addressWithPostal=address+(postal?' '+postal:'');
 return `<div class="paper"><div class="paper-content">
 <div class="kop">
 <div class="kop-logo">${letter.logo?`<img src="${letter.logo}" alt="Logo">`:''}</div>
 <div class="kop-info">
 <h1>${esc(letter.company)}</h1>
-<p>${address}</p>
-<p>${esc(letter.postal)}</p>
-<p>Telp. ${esc(letter.phone)} | ${esc(letter.email)}</p>
+<p>${addressWithPostal}</p>
+<p>Telp. ${esc(letter.phone)}</p>
+<p>${esc(letter.email)}</p>
 </div></div>
 <div class="kop-line"></div>
 <div class="k-title">KUITANSI</div>
