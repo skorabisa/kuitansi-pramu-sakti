@@ -3,68 +3,93 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Kuitansi | Pramu Sakti Indonesia</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kuitansi - Pramu Sakti Indonesia</title>
 <style>
 :root{--navy:#103d70;--bg:#f2f5fa;--line:#dce4ee}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:#172b42;font-family:Arial,sans-serif}
+body{margin:0;background:var(--bg);font-family:Arial,sans-serif;color:#172b42}
 header{background:var(--navy);color:white;padding:17px}
-header h2{font-size:18px;margin:0 0 4px}
+header h2{font-size:18px;margin:0 0 5px}
 header small{opacity:.8}
-nav{display:flex;gap:7px;overflow-x:auto;background:white;padding:11px}
-button{background:#e6edf6;color:#153d69;border:0;border-radius:8px;padding:11px 13px;cursor:pointer}
-nav button{white-space:nowrap}
+nav{display:flex;gap:7px;overflow-x:auto;background:white;padding:10px}
+button{border:0;border-radius:7px;padding:11px 13px;background:#e5edf7;color:#103d70;cursor:pointer}
 button.primary{background:var(--navy);color:white}
-main{max-width:1100px;margin:auto;padding:12px}
-.panel{background:white;padding:17px;border-radius:12px;margin-bottom:14px;box-shadow:0 2px 8px #16385910}
+nav button{white-space:nowrap}
+main{max-width:1200px;margin:auto;padding:12px}
+.panel{background:white;border-radius:12px;padding:17px;margin-bottom:14px;box-shadow:0 2px 8px #12345610}
 h3{margin:0 0 15px}
 label{display:block;font-size:13px;font-weight:bold;margin:13px 0 5px}
-input,textarea{width:100%;border:1px solid #cbd5e1;border-radius:7px;padding:11px;font:inherit}
-textarea{min-height:75px}
+input,textarea{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:7px;font:inherit}
+textarea{min-height:76px}
 .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
 .hidden{display:none!important}
-.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.stat{background:#edf3fa;padding:15px;border-radius:9px}
-.stat strong{display:block;font-size:22px;margin-top:8px;overflow-wrap:anywhere}
-.item{border-bottom:1px solid var(--line);padding:12px 0}
-.item button{margin:6px 3px 0 0}
 .muted{font-size:12px;color:#64748b;line-height:1.5}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:#edf3fa;border-radius:9px;padding:16px}
+.stat strong{display:block;font-size:22px;margin-top:8px;overflow-wrap:anywhere}
+.item{padding:13px 0;border-bottom:1px solid var(--line)}
+.item button{margin:6px 4px 0 0}
 .preview-wrap{overflow:auto;background:#dce5ee;padding:12px}
 .paper{
- width:210mm;min-height:297mm;background:white;margin:auto;
- padding:18mm 19mm;color:#111;font-size:11.5px;
- box-shadow:0 2px 8px #0002
+width:210mm;
+height:297mm;
+background:white;
+color:#111;
+padding:20mm;
+margin:auto;
+font-family:Arial,sans-serif;
+font-size:11px;
+position:relative;
+overflow:hidden;
+box-shadow:0 2px 8px #0002;
 }
-.kop{display:grid;grid-template-columns:39mm 1fr;gap:4mm;align-items:center;min-height:29mm}
-.kop-logo{height:27mm;width:39mm;display:flex;align-items:center;justify-content:center}
+.paper-content{width:170mm;height:257mm;position:relative}
+.kop{
+display:grid;
+grid-template-columns:40mm 1fr;
+align-items:center;
+gap:5mm;
+min-height:28mm;
+}
+.kop-logo{height:28mm;display:flex;align-items:center;justify-content:center}
 .kop-logo img{max-width:100%;max-height:100%;object-fit:contain}
-.kop-info{text-align:center}
-.kop-info h1{font-size:21px;font-weight:500;margin:0 0 5px}
-.kop-info p{font-size:10.5px;line-height:1.35;margin:2px 0}
-.kop-line{border-top:2.5px solid #111;margin:2mm 0 9mm}
-.k-title{text-align:center;font-size:25px;font-weight:bold}
-.k-number{text-align:center;font-size:11px;margin-top:7px}
+.kop-info{text-align:center;overflow-wrap:anywhere}
+.kop-info h1{font-size:17px;margin:0 0 4px;font-weight:700}
+.kop-info p{font-size:9px;margin:2px 0;line-height:1.35}
+.kop-line{height:2px;background:#111;margin:4mm 0 7mm}
+.k-title{text-align:center;font-family:Georgia,serif;font-size:25px;font-weight:bold}
+.k-number{text-align:center;margin-top:5px}
 .k-body{margin-top:16mm}
-.k-row{display:grid;grid-template-columns:34mm 1fr;gap:5mm;margin-bottom:7mm;line-height:1.5}
+.k-row{display:grid;grid-template-columns:34mm 4mm 1fr;gap:2mm;margin-bottom:7mm;line-height:1.55}
 .k-value{font-style:italic;white-space:pre-wrap;overflow-wrap:anywhere}
-.k-total{display:inline-block;border-top:3px double #111;border-bottom:3px double #111;padding:5px 0;font-weight:bold;font-size:12px;margin-top:10mm}
-.k-sign{width:67mm;margin:18mm 0 0 auto;line-height:1.5}
-.k-materai{height:37mm;display:flex;align-items:center;font-size:10px;font-style:italic}
+.k-total{display:inline-block;margin-top:8mm;padding:5px 0;border-top:3px double #111;border-bottom:3px double #111;font-family:Georgia,serif;font-weight:bold;font-size:13px}
+.k-sign{width:66mm;margin:18mm 0 0 auto;line-height:1.5}
+.k-materai{height:30mm;display:flex;align-items:center;font-style:italic}
 .k-person{min-height:10mm}
-@media(max-width:650px){main{padding:9px}.panel{padding:13px}.stats{grid-template-columns:1fr}}
+@media(max-width:650px){.stats{grid-template-columns:1fr}.panel{padding:13px}}
 @media print{
- @page{size:A4;margin:0}
- body{background:white}
- header,nav,main{display:none!important}
- #printArea{display:block!important}
- .paper{box-shadow:none;margin:0;break-after:page}
- .paper:last-child{break-after:auto}
+@page{size:A4;margin:0}
+html,body{margin:0;padding:0;background:white}
+header,nav,main{display:none!important}
+#printArea{display:block!important}
+.paper{
+width:210mm;height:297mm;
+padding:20mm;
+margin:0;
+box-shadow:none;
+break-after:page;
+page-break-after:always;
+}
+.paper:last-child{break-after:auto;page-break-after:auto}
 }
 </style>
 </head>
 <body>
-<header><h2>PRAMU SAKTI INDONESIA</h2><small>Sistem Kuitansi Digital</small></header>
+<header>
+<h2>PRAMU SAKTI INDONESIA</h2>
+<small>Sistem Kuitansi Digital</small>
+</header>
 <nav>
 <button onclick="show('dashboard')">Dashboard</button>
 <button onclick="newReceipt();show('editor')">Buat Kuitansi</button>
@@ -83,22 +108,22 @@ textarea{min-height:75px}
 <button class="primary" onclick="newReceipt();show('editor')">+ Kuitansi Baru</button>
 <button onclick="show('bulk')">Buat Banyak Kuitansi</button>
 </div>
-<p class="muted">Data tersimpan di browser ini. Gunakan ekspor CSV untuk cadangan.</p>
+<p class="muted">Data tersimpan pada browser perangkat ini. Ekspor CSV secara berkala sebagai cadangan.</p>
 </section>
 
 <section id="editor" class="panel hidden">
-<h3>Form Kuitansi</h3>
+<h3>Buat / Edit Kuitansi</h3>
 <label>Nomor Kuitansi</label><input id="number">
 <label>Sudah Terima Dari</label><input id="payer">
 <label>Nominal Rupiah</label><input id="amount" type="number" min="0">
 <label>Untuk Pembayaran</label><textarea id="purpose"></textarea>
 <label>Kota</label><input id="city">
 <label>Tanggal</label><input id="date" type="date">
-<label>Nama Perusahaan Penerima</label><input id="recipient">
+<label>Perusahaan Penerima</label><input id="recipient">
 <label>Nama Penandatangan</label><input id="signer">
 <label>Jabatan</label><input id="position">
 <div class="actions">
-<button class="primary" onclick="saveReceipt()">Simpan</button>
+<button class="primary" onclick="saveReceipt()">Simpan Kuitansi</button>
 <button onclick="printCurrent()">Cetak / PDF</button>
 <button onclick="newReceipt()">Form Baru</button>
 </div>
@@ -115,19 +140,17 @@ textarea{min-height:75px}
 </section>
 
 <section id="bulk" class="panel hidden">
-<h3>Buat Kuitansi Massal</h3>
-<p class="muted">Masukkan satu kuitansi per baris. Pisahkan data dengan tanda | (garis tegak).</p>
-<p class="muted">Format: Nama Pembayar | Nominal | Keperluan Pembayaran</p>
-<textarea id="bulkData" rows="8" placeholder="Nama Pembayar A | 1500000 | Pembayaran jasa&#10;Nama Pembayar B | 2500000 | Pembayaran kegiatan"></textarea>
+<h3>Kuitansi Massal</h3>
+<p class="muted">Satu kuitansi per baris. Format: Nama Pembayar | Nominal | Keperluan</p>
+<textarea id="bulkData" rows="8" placeholder="PT Contoh A | 1500000 | Jasa kegiatan&#10;PT Contoh B | 2500000 | Pembayaran barang"></textarea>
 <label>Kota</label><input id="bulkCity" value="Tangerang Selatan">
 <label>Tanggal</label><input id="bulkDate" type="date">
 <label>Perusahaan Penerima</label><input id="bulkRecipient" value="Pramu Sakti Indonesia">
 <label>Penandatangan</label><input id="bulkSigner">
 <label>Jabatan</label><input id="bulkPosition" value="Direktur">
 <div class="actions">
-<button class="primary" onclick="saveBulk()">Simpan Semua Kuitansi</button>
+<button class="primary" onclick="saveBulk()">Simpan Semua</button>
 </div>
-<p class="muted">Periksa kembali nominal dan identitas sebelum mencetak kuitansi.</p>
 </section>
 
 <section id="letter" class="panel hidden">
@@ -139,7 +162,7 @@ textarea{min-height:75px}
 <label>Kode Pos</label><input id="postal">
 <label>Logo Perusahaan</label>
 <input id="logoUpload" type="file" accept="image/*" onchange="loadLogo(event)">
-<p class="muted">Logo otomatis dipotong untuk mengurangi ruang kosong.</p>
+<p class="muted">Logo akan diproses agar tampil proporsional pada kop surat.</p>
 <div class="actions">
 <button class="primary" onclick="saveLetter()">Simpan Kop Surat</button>
 <button onclick="show('editor')">Lihat Kuitansi</button>
@@ -148,7 +171,7 @@ textarea{min-height:75px}
 
 <section id="previewPanel" class="panel hidden">
 <h3>Preview Kuitansi A4</h3>
-<p class="muted">Geser ke samping pada HP untuk melihat seluruh halaman.</p>
+<p class="muted">Geser ke samping pada HP untuk melihat halaman penuh. Margin cetak 20 mm pada semua sisi.</p>
 <div class="preview-wrap" id="preview"></div>
 </section>
 </main>
@@ -157,18 +180,25 @@ textarea{min-height:75px}
 const $=id=>document.getElementById(id);
 const fields=['number','payer','amount','purpose','city','date','recipient','signer','position'];
 const letterFields=['company','address','phone','email','postal'];
-const defaultLetter={
+const defaults={
 company:'PRAMU SAKTI INDONESIA',
 address:'Jl. H. Muri Salim, RT 003 RW 11, Pisangan, Ciputat Timur\nKota Tangerang Selatan',
 phone:'085856409350',
 email:'pramusaktiindonesia@gmail.com',
 postal:'15419',logo:''
 };
-function getJSON(k,f){try{return JSON.parse(localStorage.getItem(k))||f}catch(e){return f}}
+function getJSON(k,f){
+try{return JSON.parse(localStorage.getItem(k))||f}
+catch(e){return f}
+}
 let receipts=getJSON('psi_receipts',[]);
-let letter={...defaultLetter,...getJSON('psi_letter',{})};
+let letter={...defaults,...getJSON('psi_letter',{})};
 let editing=null;
-function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function esc(s){
+return String(s??'').replace(/[&<>"']/g,c=>({
+'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+}[c]));
+}
 function money(n){return 'Rp'+Number(n||0).toLocaleString('id-ID')}
 function words(n){
 n=Math.floor(Number(n)||0);
@@ -197,41 +227,55 @@ function nextNumber(){
 let seq=Number(localStorage.getItem('psi_seq')||0)+1;
 const used=new Set(receipts.map(r=>r.number));
 let result;
-do{result='KWT-'+new Date().getFullYear()+'-'+String(seq).padStart(4,'0');seq++}while(used.has(result));
+do{
+result='KWT-'+new Date().getFullYear()+'-'+String(seq).padStart(4,'0');
+seq++;
+}while(used.has(result));
 return result;
 }
 function readForm(){
-let r={};fields.forEach(k=>r[k]=$(k).value);
-r.amount=Number(r.amount)||0;return r;
+let r={};
+fields.forEach(k=>r[k]=$(k).value);
+r.amount=Number(r.amount)||0;
+return r;
 }
-function fillForm(r){fields.forEach(k=>$(k).value=r[k]??'');render()}
+function fillForm(r){
+fields.forEach(k=>$(k).value=r[k]??'');
+render();
+}
 function newReceipt(){
 editing=null;
-fillForm({number:nextNumber(),payer:'',amount:0,purpose:'',city:'Tangerang Selatan',date:today(),recipient:'Pramu Sakti Indonesia',signer:'',position:'Direktur'});
+fillForm({
+number:nextNumber(),payer:'',amount:0,purpose:'',
+city:'Tangerang Selatan',date:today(),
+recipient:'Pramu Sakti Indonesia',signer:'',position:'Direktur'
+});
 }
 function formattedDate(s){
 if(!s)return '';
 const [y,m,d]=s.split('-').map(Number);
-return new Date(y,m-1,d).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
+return new Date(y,m-1,d).toLocaleDateString('id-ID',{
+day:'numeric',month:'long',year:'numeric'
+});
 }
 function paperHTML(r){
 const address=esc(letter.address).replace(/\n/g,'<br>');
-return `<div class="paper">
+return `<div class="paper"><div class="paper-content">
 <div class="kop">
 <div class="kop-logo">${letter.logo?`<img src="${letter.logo}" alt="Logo">`:''}</div>
 <div class="kop-info">
 <h1>${esc(letter.company)}</h1>
 <p>${address}</p>
-<p>No. Telp: ${esc(letter.phone)} | ${esc(letter.email)}</p>
 <p>${esc(letter.postal)}</p>
+<p>Telp. ${esc(letter.phone)} | ${esc(letter.email)}</p>
 </div></div>
 <div class="kop-line"></div>
 <div class="k-title">KUITANSI</div>
 <div class="k-number">Nomor: ${esc(r.number)}</div>
 <div class="k-body">
-<div class="k-row"><span>Sudah Terima Dari</span><span class="k-value">${esc(r.payer)}</span></div>
-<div class="k-row"><span>Banyaknya Uang</span><span class="k-value">${esc(words(r.amount))} Rupiah</span></div>
-<div class="k-row"><span>Untuk Pembayaran</span><span class="k-value">${esc(r.purpose)}</span></div>
+<div class="k-row"><span>Sudah Terima Dari</span><span>:</span><span class="k-value">${esc(r.payer)}</span></div>
+<div class="k-row"><span>Banyaknya Uang</span><span>:</span><span class="k-value">${esc(words(r.amount))} Rupiah</span></div>
+<div class="k-row"><span>Untuk Pembayaran</span><span>:</span><span class="k-value">${esc(r.purpose)}</span></div>
 </div>
 <div class="k-total">Jumlah ${money(r.amount)},-</div>
 <div class="k-sign">
@@ -239,29 +283,49 @@ return `<div class="paper">
 <div>${esc(r.recipient)}</div>
 <div class="k-materai">Materai 10.000</div>
 <div class="k-person">${esc(r.signer)}<br>${esc(r.position)}</div>
-</div></div>`;
+</div></div></div>`;
 }
 function render(){$('preview').innerHTML=paperHTML(readForm())}
 function show(id){
-['dashboard','editor','history','bulk','letter'].forEach(k=>$(k).classList.toggle('hidden',k!==id));
+['dashboard','editor','history','bulk','letter'].forEach(k=>{
+$(k).classList.toggle('hidden',k!==id);
+});
 $('previewPanel').classList.toggle('hidden',!['editor','letter'].includes(id));
 if(['editor','letter'].includes(id))render();
 window.scrollTo(0,0);
 }
 function saveData(){
-try{localStorage.setItem('psi_receipts',JSON.stringify(receipts));updateDashboard();return true}
-catch(e){alert('Penyimpanan penuh. Ekspor CSV untuk cadangan.');return false}
+try{
+localStorage.setItem('psi_receipts',JSON.stringify(receipts));
+updateDashboard();
+return true;
+}catch(e){
+alert('Penyimpanan penuh. Ekspor CSV untuk cadangan.');
+return false;
+}
 }
 function saveReceipt(){
 const r=readForm();
-if(!r.number||!r.payer||r.amount<=0){alert('Isi nomor, pembayar, dan nominal.');return}
-if(receipts.some((x,i)=>x.number===r.number&&i!==editing)){alert('Nomor kuitansi sudah digunakan.');return}
+if(!r.number||!r.payer||r.amount<=0){
+alert('Isi nomor, pembayar, dan nominal.');
+return;
+}
+if(receipts.some((x,i)=>x.number===r.number&&i!==editing)){
+alert('Nomor kuitansi sudah digunakan.');
+return;
+}
 const backup=receipts.slice();
-if(editing===null){receipts.push(r);editing=receipts.length-1}
-else receipts[editing]=r;
-if(!saveData()){receipts=backup;editing=null;return}
+if(editing===null){
+receipts.push(r);
+editing=receipts.length-1;
+}else receipts[editing]=r;
+if(!saveData()){
+receipts=backup;editing=null;return;
+}
 const match=r.number.match(/^KWT-\d{4}-(\d+)$/);
-if(match)localStorage.setItem('psi_seq',Math.max(Number(localStorage.getItem('psi_seq')||0),Number(match[1])));
+if(match)localStorage.setItem('psi_seq',Math.max(
+Number(localStorage.getItem('psi_seq')||0),Number(match[1])
+));
 alert('Kuitansi berhasil disimpan.');
 }
 function updateDashboard(){
@@ -273,19 +337,33 @@ function listReceipts(){
 const q=$('search').value.toLowerCase();
 $('historyList').innerHTML=receipts.map((r,i)=>({...r,i}))
 .filter(r=>(r.number+' '+r.payer).toLowerCase().includes(q))
-.reverse().map(r=>`<div class="item"><b>${esc(r.number)}</b><br>${esc(r.payer)} — ${money(r.amount)}
-<div><button onclick="editReceipt(${r.i})">Edit</button>
+.reverse().map(r=>`<div class="item">
+<b>${esc(r.number)}</b><br>${esc(r.payer)} — ${money(r.amount)}
+<div>
+<button onclick="editReceipt(${r.i})">Edit</button>
 <button onclick="duplicateReceipt(${r.i})">Duplikasi</button>
 <button onclick="printSaved(${r.i})">Cetak</button>
-<button onclick="deleteReceipt(${r.i})">Hapus</button></div></div>`).join('')||'<p>Belum ada kuitansi.</p>';
+<button onclick="deleteReceipt(${r.i})">Hapus</button>
+</div></div>`).join('')||'<p>Belum ada kuitansi.</p>';
 }
-function editReceipt(i){editing=i;fillForm(receipts[i]);show('editor')}
-function duplicateReceipt(i){editing=null;fillForm({...receipts[i],number:nextNumber()});show('editor')}
+function editReceipt(i){
+editing=i;fillForm(receipts[i]);show('editor');
+}
+function duplicateReceipt(i){
+editing=null;
+fillForm({...receipts[i],number:nextNumber()});
+show('editor');
+}
 function deleteReceipt(i){
 if(!confirm('Hapus kuitansi ini?'))return;
-receipts.splice(i,1);editing=null;saveData();
+receipts.splice(i,1);
+editing=null;
+saveData();
 }
-function printHTML(html){$('printArea').innerHTML=html;window.print()}
+function printHTML(html){
+$('printArea').innerHTML=html;
+window.print();
+}
 function printCurrent(){printHTML(paperHTML(readForm()))}
 function printSaved(i){printHTML(paperHTML(receipts[i]))}
 function printAll(){
@@ -300,7 +378,8 @@ for(let i=0;i<lines.length;i++){
 const p=lines[i].split('|').map(x=>x.trim());
 const amount=Number(p[1]?.replace(/[.,\s]/g,''));
 if(p.length!==3||!p[0]||!Number.isSafeInteger(amount)||amount<=0||!p[2]){
-alert('Periksa format atau nominal pada baris '+(i+1));return;
+alert('Periksa format atau nominal pada baris '+(i+1));
+return;
 }
 parsed.push({payer:p[0],amount,purpose:p[2]});
 }
@@ -309,9 +388,14 @@ let seq=Number(localStorage.getItem('psi_seq')||0);
 const year=new Date().getFullYear();
 const batch=parsed.map(p=>{
 let number;
-do{seq++;number='KWT-'+year+'-'+String(seq).padStart(4,'0')}while(existing.has(number));
+do{
+seq++;
+number='KWT-'+year+'-'+String(seq).padStart(4,'0');
+}while(existing.has(number));
 existing.add(number);
-return {...p,number,city:$('bulkCity').value,date:$('bulkDate').value,recipient:$('bulkRecipient').value,signer:$('bulkSigner').value,position:$('bulkPosition').value};
+return {...p,number,city:$('bulkCity').value,
+date:$('bulkDate').value,recipient:$('bulkRecipient').value,
+signer:$('bulkSigner').value,position:$('bulkPosition').value};
 });
 const backup=receipts.slice();
 receipts.push(...batch);
@@ -322,21 +406,34 @@ alert(batch.length+' kuitansi berhasil dibuat.');
 show('history');
 }
 function exportCSV(){
-const csv=[fields.join(','),...receipts.map(r=>fields.map(k=>'"'+String(r[k]??'').replace(/"/g,'""')+'"').join(','))].join('\r\n');
+const csv=[fields.join(','),...receipts.map(r=>
+fields.map(k=>'"'+String(r[k]??'').replace(/"/g,'""')+'"').join(',')
+)].join('\r\n');
 const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'});
-const url=URL.createObjectURL(blob),a=document.createElement('a');
-a.href=url;a.download='kuitansi-pramu-sakti.csv';a.click();
+const url=URL.createObjectURL(blob);
+const a=document.createElement('a');
+a.href=url;
+a.download='kuitansi-pramu-sakti.csv';
+a.click();
 setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
-function loadLetter(){letterFields.forEach(k=>$(k).value=letter[k]||'')}
+function loadLetter(){
+letterFields.forEach(k=>$(k).value=letter[k]||'');
+}
 function saveLetter(){
 letterFields.forEach(k=>letter[k]=$(k).value);
-try{localStorage.setItem('psi_letter',JSON.stringify(letter));render();alert('Kop surat tersimpan.')}
-catch(e){alert('Penyimpanan penuh. Gunakan logo lebih kecil.')}
+try{
+localStorage.setItem('psi_letter',JSON.stringify(letter));
+render();
+alert('Kop surat tersimpan.');
+}catch(e){alert('Penyimpanan penuh. Gunakan logo lebih kecil.')}
 }
 function loadLogo(e){
-const file=e.target.files[0];if(!file)return;
-if(!file.type.startsWith('image/'))return alert('Pilih gambar PNG/JPG.');
+const file=e.target.files[0];
+if(!file)return;
+if(!file.type.startsWith('image/')){
+alert('Pilih gambar PNG/JPG.');return;
+}
 const reader=new FileReader();
 reader.onload=()=>{
 const img=new Image();
@@ -347,22 +444,33 @@ const c=document.createElement('canvas');
 c.width=Math.max(1,Math.round(img.width*scale));
 c.height=Math.max(1,Math.round(img.height*scale));
 const ctx=c.getContext('2d',{willReadFrequently:true});
-ctx.fillStyle='white';ctx.fillRect(0,0,c.width,c.height);
+ctx.fillStyle='white';
+ctx.fillRect(0,0,c.width,c.height);
 ctx.drawImage(img,0,0,c.width,c.height);
 const data=ctx.getImageData(0,0,c.width,c.height).data;
 let l=c.width,t=c.height,r=-1,b=-1;
-for(let y=0;y<c.height;y++)for(let x=0;x<c.width;x++){
+for(let y=0;y<c.height;y++){
+for(let x=0;x<c.width;x++){
 const i=(y*c.width+x)*4;
 if(Math.min(data[i],data[i+1],data[i+2])<225){
-l=Math.min(l,x);r=Math.max(r,x);t=Math.min(t,y);b=Math.max(b,y);
+l=Math.min(l,x);r=Math.max(r,x);
+t=Math.min(t,y);b=Math.max(b,y);
+}
 }}
-if(r<l){letter.logo=c.toDataURL('image/png');render();return}
+if(r<l){
+letter.logo=c.toDataURL('image/png');
+render();return;
+}
 l=Math.max(0,l-10);t=Math.max(0,t-10);
-r=Math.min(c.width-1,r+10);b=Math.min(c.height-1,b+10);
+r=Math.min(c.width-1,r+10);
+b=Math.min(c.height-1,b+10);
 const out=document.createElement('canvas');
 out.width=r-l+1;out.height=b-t+1;
-out.getContext('2d').drawImage(c,l,t,out.width,out.height,0,0,out.width,out.height);
-letter.logo=out.toDataURL('image/png');render();
+out.getContext('2d').drawImage(
+c,l,t,out.width,out.height,0,0,out.width,out.height
+);
+letter.logo=out.toDataURL('image/png');
+render();
 }catch(err){alert('Gagal memproses logo.')}
 };
 img.src=reader.result;
@@ -371,7 +479,10 @@ reader.readAsDataURL(file);
 }
 fields.forEach(k=>$(k).addEventListener('input',render));
 $('bulkDate').value=today();
-loadLetter();newReceipt();updateDashboard();show('dashboard');
+loadLetter();
+newReceipt();
+updateDashboard();
+show('dashboard');
 </script>
 </body>
 </html>
